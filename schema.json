@@ -1,0 +1,78 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LectureDocument",
+  "description": "مخطط بنية بيانات توليد محاضرات الـ PDF - مركز تصوير كلية التربية",
+  "type": "object",
+  "required": ["meta"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["department", "year", "semester", "subject", "subjectType", "lecture"],
+      "properties": {
+        "department": { "type": "string", "description": "اسم القسم" },
+        "year": { "type": "string", "description": "السنة الدراسية" },
+        "semester": { "type": "string", "description": "الفصل الدراسي" },
+        "subject": { "type": "string", "description": "اسم المادة" },
+        "subjectType": { "type": "string", "description": "طبيعة المادة (نظري / عملي)" },
+        "lecture": { "type": "string", "description": "المحاضرة (رقمها أو اسمها)" },
+        "totalPages": { "type": ["number", "string"], "description": "عدد الصفحات الكلي" },
+        "professor": { "type": "string", "description": "دكتور المادة" },
+        "academicYear": { "type": "string", "description": "العام الجامعي" }
+      }
+    },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "branchId": {
+          "type": "string",
+          "enum": ["ershad", "moallem", "manahij", "teqniyat", "purple", "general"],
+          "description": "معرف الفرع التلقائي لاختيار الشعار والألوان"
+        },
+        "logoPath": { "type": "string", "description": "مسار أو رابط شعار مخصص" },
+        "watermarkPath": { "type": "string", "description": "مسار علامة مائية مخصصة" },
+        "showWatermark": { "type": "boolean", "default": true },
+        "primaryColor": { "type": "string", "description": "اللون الأساسي" },
+        "secondaryColor": { "type": "string", "description": "اللون الثانوي" },
+        "accentColor": { "type": "string", "description": "لون التمييز" },
+        "fontSize": { "type": "string", "default": "14px" },
+        "lineHeight": { "type": ["number", "string"], "default": 1.25 },
+        "fontFamily": { "type": "string", "default": "Cairo, sans-serif" }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/ContentElement" }
+    },
+    "pages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["elements"],
+        "properties": {
+          "pageNumber": { "type": "number" },
+          "pageTitle": { "type": "string" },
+          "elements": {
+            "type": "array",
+            "items": { "$ref": "#/definitions/ContentElement" }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ContentElement": {
+      "type": "object",
+      "required": ["type"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "h1", "h2", "h3", "p", "line", "list",
+            "callout", "box", "table", "definitions",
+            "qa", "quote", "image", "summary", "section"
+          ]
+        }
+      }
+    }
+  }
+}
