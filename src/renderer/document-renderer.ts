@@ -19,11 +19,13 @@ import { buildBaseCss } from './styles/base';
 import { buildHeaderCss } from './styles/header';
 import { buildFooterCss } from './styles/footer';
 import { buildWatermarkCss } from './styles/watermark';
+import { buildSideRailsCss } from './styles/side-rails';
 import { buildBlocksCss } from './styles/blocks';
 import { buildPaginationCss } from './pagination/break-rules';
 
 import { renderHeader, renderSubsequentPageTopBar } from './layout/header-renderer';
 import { renderWatermark } from './layout/watermark-renderer';
+import { renderSideRails } from './layout/side-rails-renderer';
 import { renderBlocks } from './blocks';
 
 /**
@@ -50,6 +52,7 @@ function buildCompleteCss(theme: ResolvedTheme): string {
     buildHeaderCss(),
     buildFooterCss(),
     buildWatermarkCss(),
+    buildSideRailsCss(),
     buildBlocksCss(),
     buildPaginationCss(),
   ].join('\n');
@@ -136,6 +139,9 @@ export function renderDocument(
   // Render the watermark (fixed position — repeats on all pages)
   const watermarkHtml = renderWatermark(theme);
 
+  // Render the side rails (fixed position — repeats on all pages)
+  const sideRailsHtml = renderSideRails(doc.course, theme);
+
   // Render all content
   let contentHtml: string;
   if (doc.sections && doc.sections.length > 0) {
@@ -157,6 +163,9 @@ export function renderDocument(
   <div class="document-root">
     <!-- العلامة المائية الشفافة (fixed position — repeats on all pages) -->
     ${watermarkHtml}
+
+    <!-- الهوامش الجانبية وشريط التوثيق (fixed position — repeats on all pages) -->
+    ${sideRailsHtml}
 
     <!-- ترويسة الصفحة الأولى فقط -->
     ${headerHtml}

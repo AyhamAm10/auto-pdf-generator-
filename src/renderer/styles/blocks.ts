@@ -137,7 +137,7 @@ export function buildBlocksCss(): string {
     }
 
     .p-highlighted {
-      background: var(--light-bg);
+      background: rgba(240, 247, 255, 0.85);
       padding: 6px 10px;
       border-radius: 6px;
       border-right: 3px solid var(--secondary-color);
@@ -285,7 +285,7 @@ export function buildBlocksCss(): string {
     }
 
     .callout-note {
-      background: #F8FAFC;
+      background: rgba(248, 250, 252, 0.85);
       border: 1px solid #E2E8F0;
       border-right: 3px solid var(--secondary-color);
       color: #1E293B;
@@ -296,7 +296,7 @@ export function buildBlocksCss(): string {
     }
 
     .callout-important {
-      background: #FEF2F2;
+      background: rgba(254, 242, 242, 0.88);
       border: 1px solid #FECDD3;
       border-right: 3px solid #EF4444;
     }
@@ -306,7 +306,7 @@ export function buildBlocksCss(): string {
     }
 
     .callout-exam_tip {
-      background: #FFFBEB;
+      background: rgba(255, 251, 235, 0.88);
       border: 1px solid #FDE68A;
       border-right: 3px solid #F59E0B;
     }
@@ -316,7 +316,7 @@ export function buildBlocksCss(): string {
     }
 
     .callout-definition {
-      background: #F8FAFC;
+      background: rgba(248, 250, 252, 0.85);
       border: 1px solid #E2E8F0;
       border-right: 3px solid var(--primary-color);
     }
@@ -326,7 +326,7 @@ export function buildBlocksCss(): string {
     }
 
     .callout-info {
-      background: var(--light-bg);
+      background: rgba(240, 247, 255, 0.85);
       border: 1px solid var(--border-color);
       border-right: 3px solid var(--secondary-color);
       color: #1E293B;
@@ -348,7 +348,7 @@ export function buildBlocksCss(): string {
     }
 
     .table-caption {
-      background: #F8FAFC;
+      background: rgba(248, 250, 252, 0.90);
       color: #1E293B;
       font-weight: 700;
       padding: 6px 12px;
@@ -385,11 +385,11 @@ export function buildBlocksCss(): string {
     }
 
     .element-table tr.tr-odd {
-      background-color: #FAFBFD;
+      background-color: rgba(250, 251, 253, 0.82);
     }
 
     .element-table tr.tr-even {
-      background-color: #FFFFFF;
+      background-color: rgba(255, 255, 255, 0.70);
     }
 
     /* ------------------------------------------------------------- */
@@ -410,7 +410,7 @@ export function buildBlocksCss(): string {
     }
 
     .definition-card {
-      background: #FAFBFD;
+      background: rgba(250, 251, 253, 0.82);
       border: 1px solid #E2E8F0;
       border-radius: 9px;
       padding: 8px 11px;
@@ -435,7 +435,7 @@ export function buildBlocksCss(): string {
 
     .def-example {
       margin-top: 4px;
-      background: #F1F5F9;
+      background: rgba(241, 245, 249, 0.85);
       border: 1px solid #E2E8F0;
       border-radius: 6px;
       padding: 4px 8px;
@@ -462,7 +462,7 @@ export function buildBlocksCss(): string {
     /* الأسئلة والأجوبة Q&A                                           */
     /* ------------------------------------------------------------- */
     .element-qa-card {
-      background: #FAFBFD;
+      background: rgba(250, 251, 253, 0.82);
       border: 1px solid #E2E8F0;
       border-radius: 9px;
       padding: 8px 12px;
@@ -538,7 +538,7 @@ export function buildBlocksCss(): string {
     }
 
     .qa-answer-box {
-      background: var(--light-bg);
+      background: rgba(240, 247, 255, 0.85);
       border-radius: 6px;
       padding: 6px 9px;
       font-size: 13px;
@@ -580,7 +580,7 @@ export function buildBlocksCss(): string {
     /* ------------------------------------------------------------- */
     .element-quote {
       position: relative;
-      background: #FAFBFD;
+      background: rgba(250, 251, 253, 0.82);
       border: 1px solid #E2E8F0;
       border-right: 3px solid var(--primary-color);
       padding: 8px 14px;
@@ -629,7 +629,7 @@ export function buildBlocksCss(): string {
     /* الخلاصة Summary                                                */
     /* ------------------------------------------------------------- */
     .element-summary-card {
-      background: #FAFBFD;
+      background: rgba(250, 251, 253, 0.82);
       border: 1px solid #E2E8F0;
       border-radius: 9px;
       padding: 8px 12px;
