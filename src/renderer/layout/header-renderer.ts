@@ -65,16 +65,13 @@ export function renderHeader(course: CourseInfo, theme: ResolvedTheme, totalPage
           </div>
           <div class="meta-row">
             <span class="meta-label">عدد الصفحات:</span>
-            <span class="meta-value page-count-val">${escapeHtml(String(totalPages))}</span>
+            <span class="meta-value page-count-val">${escapeHtml(String(totalPages || course.totalPages || 0))}</span>
           </div>
         </div>
       </div>
 
-      <!-- الفاصل السفلي -->
-      <div class="header-bottom-divider">
-        <div class="divider-main-line"></div>
-        <div class="divider-notch-tab"></div>
-      </div>
+      <!-- الفاصل السفلي للترويسة بتصميم انسيابي -->
+      <div class="header-bottom-divider"></div>
     </header>
   `;
 }
@@ -83,40 +80,17 @@ export function renderHeader(course: CourseInfo, theme: ResolvedTheme, totalPage
  * Render the small corner notch that appears on subsequent pages.
  */
 export function renderSubsequentPageTopBar(): string {
-  return `
-    <div class="subsequent-top-bar">
-      <div class="subsequent-corner-notch"></div>
-    </div>
-  `;
+  return '';
 }
 
 /**
  * Build the Puppeteer header template HTML.
- * Renders the brand corner notch at the top-left on subsequent pages
- * inside the 8mm page top margin.
- * On the first page, @page :first margin-top: 0 collapses this template.
+ * Kept clean and minimal so it does not repeat or conflict with the first-page header.
  */
 export function buildPuppeteerHeaderTemplate(
   course: CourseInfo,
   theme: ResolvedTheme
 ): string {
-  const primaryColor = theme.colors.primary;
-  const secondaryColor = theme.colors.secondary;
-
-  return `
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-    </style>
-    <div style="width: 100%; height: 8mm; position: relative; direction: rtl; display: flex; align-items: flex-start;">
-      <!-- Corner notch in top-left matching header identity -->
-      <div style="position: absolute; top: 0; left: 0; width: 48px; height: 14px; background: linear-gradient(135deg, ${secondaryColor}, ${primaryColor}); clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%); opacity: 0.9;"></div>
-    </div>
-  `;
+  return '<span></span>';
 }
 

@@ -25,19 +25,9 @@ export function buildFooterCss(): string {
 
     .footer-divider {
       width: 100%;
-      height: 2px;
-      background-color: var(--primary-color);
-      position: relative;
-    }
-
-    .footer-divider-notch {
-      position: absolute;
-      top: -1px;
-      left: 10%;
-      width: 45px;
-      height: 4px;
-      background-color: var(--secondary-color);
-      border-radius: 2px;
+      height: 1.5px;
+      background: linear-gradient(to left, var(--secondary-color), var(--primary-color), var(--secondary-color));
+      opacity: 0.85;
     }
 
     .footer-row {
@@ -45,46 +35,44 @@ export function buildFooterCss(): string {
       align-items: center;
       justify-content: space-between;
       width: 100%;
-      padding: 4px 12mm 2px 12mm;
+      padding: 5px 12mm 3px 12mm;
     }
 
     .footer-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      padding: 3px 10px;
-      background-color: var(--light-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      gap: 6px;
+      padding: 4px 14px;
+      background-color: #FAFBFD;
+      border: 1px solid #E2E8F0;
+      border-radius: 20px;
       font-size: 11px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
-    }
-
-    .footer-subject-badge {
-      border-right: 3px solid var(--primary-color);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
     }
 
     .footer-lecture-badge {
-      border-left: 3px solid var(--secondary-color);
       max-width: 44%;
+      overflow: hidden;
     }
 
     .footer-lbl {
-      color: var(--primary-color);
-      font-weight: 700;
-      font-size: 11px;
+      color: #64748B;
+      font-weight: 600;
+      font-size: 10.5px;
       white-space: nowrap;
       flex-shrink: 0;
-      opacity: 0.95;
     }
 
-    .footer-val {
-      font-weight: 800;
+    .footer-val-subject {
+      font-weight: 700;
       font-size: 11.5px;
       color: var(--primary-color);
+      white-space: nowrap;
     }
 
-    .lecture-title-val {
+    .footer-val-lecture {
+      font-weight: 700;
+      font-size: 11.5px;
       color: var(--secondary-color);
       overflow: hidden;
       text-overflow: ellipsis;
@@ -95,14 +83,20 @@ export function buildFooterCss(): string {
     .page-capsule {
       background-color: var(--primary-color);
       color: #FFFFFF;
-      padding: 3px 15px;
-      border-radius: 14px;
-      font-weight: 700;
+      padding: 4px 16px;
+      border-radius: 20px;
+      font-weight: 600;
       font-size: 11px;
       display: inline-flex;
       align-items: center;
-      gap: 4px;
-      box-shadow: 0 1px 3px rgba(27, 54, 93, 0.2);
+      gap: 5px;
+      box-shadow: 0 2px 4px rgba(27, 54, 93, 0.15);
+    }
+
+    .page-text-muted {
+      color: rgba(255, 255, 255, 0.75);
+      font-weight: 500;
+      font-size: 10.5px;
     }
 
     .current-page-num {
@@ -110,19 +104,14 @@ export function buildFooterCss(): string {
       font-weight: 900;
       font-size: 12.5px;
       padding: 0 2px;
-      text-shadow: 0 0 1px rgba(0, 0, 0, 0.3);
+      text-shadow: 0 0 1px rgba(0, 0, 0, 0.2);
     }
 
     .total-page-num {
-      font-weight: 800;
+      font-weight: 700;
       color: #FFFFFF;
       font-size: 11.5px;
       padding: 0 1px;
-    }
-
-    .page-text {
-      color: #E2E8F0;
-      font-weight: 600;
     }
   `;
 }

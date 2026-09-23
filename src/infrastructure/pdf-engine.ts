@@ -76,6 +76,50 @@ async function launchBrowser(): Promise<Browser> {
 }
 
 /**
+ * Calculate the exact total pages of an HTML document in-memory without saving a file to disk.
+ */
+export async function getPdfPageCount(html: string, footerTemplate?: string): Promise<number> {
+  let browser: Browser | null = null;
+  try {
+    browser = await launchBrowser();
+    const page: Page = await browser.newPage();
+    await page.setViewport({ width: 794, height: 1123 });
+    await page.setContent(html, {
+      waitUntil: 'domcontentloaded',
+      timeout: 30000,
+    });
+    await page.evaluate('document.fonts ? document.fonts.ready : Promise.resolve()');
+    await new Promise(resolve => setTimeout(resolve, 300));
+
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+      preferCSSPageSize: true,
+      displayHeaderFooter: Boolean(footerTemplate),
+      footerTemplate: footerTemplate || '<span></span>',
+      headerTemplate: '<span></span>',
+      margin: {
+        top: '0mm',
+        right: '0mm',
+        bottom: '0mm',
+        left: '0mm',
+      },
+    });
+
+    const pdfText = Buffer.from(pdfBuffer).toString('latin1');
+    const matches = pdfText.match(/\/Type\s*\/Page\b/g);
+    return matches ? matches.length : 1;
+  } catch (err) {
+    console.warn('[PDF Engine] Page count calculation fallback:', err);
+    return 1;
+  } finally {
+    if (browser) {
+      await browser.close();
+    }
+  }
+}
+
+/**
  * Generate PDF from HTML content using Puppeteer.
  */
 export async function generatePdf(options: PdfOptions): Promise<PdfResult> {

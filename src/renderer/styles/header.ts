@@ -109,45 +109,16 @@ export function buildHeaderCss(): string {
 
     /* الفاصل السفلي للترويسة */
     .header-bottom-divider {
-      position: relative;
-      width: 100%;
-      height: 4px;
-      margin-top: 4px;
-    }
-
-    .divider-main-line {
       width: 100%;
       height: 2px;
-      background-color: var(--primary-color);
-    }
-
-    .divider-notch-tab {
-      position: absolute;
-      top: -2px;
-      left: 10%;
-      width: 50px;
-      height: 4px;
-      background: var(--secondary-color);
-      border-radius: 2px;
+      background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
+      margin-top: 6px;
+      border-radius: 1px;
     }
 
     /* شريط علوي بسيط للصفحات التالية */
     .subsequent-top-bar {
-      position: relative;
-      width: 100%;
-      height: 18px;
-      z-index: 10;
-    }
-
-    .subsequent-corner-notch {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 48px;
-      height: 15px;
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
-      opacity: 0.85;
+      display: none;
     }
   `;
 }

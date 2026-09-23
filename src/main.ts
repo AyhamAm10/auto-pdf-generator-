@@ -11,7 +11,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { prepareDocument, generateHtml, getHeaderTemplate, getFooterTemplate } from './application/generate';
-import { generatePdf } from './infrastructure/pdf-engine';
+import { generatePdf, getPdfPageCount } from './infrastructure/pdf-engine';
 
 async function main(): Promise<void> {
   const args = process.argv.slice(2);
@@ -58,9 +58,28 @@ async function main(): Promise<void> {
   console.log(`   ✓ المحاضرة: ${doc.course.lecture}`);
   console.log(`   ✓ الأقسام: ${doc.sections.length}`);
 
-  // Step 3: Generate HTML & layout templates
-  console.log('🎨 إنشاء المستند HTML...');
-  let { html, theme } = generateHtml(doc, assetsDir);
+  // Step 3: Determine total pages & resolve theme
+  console.log('🎨 تجهيز القالب والترويسة...');
+  const { theme } = generateHtml(doc, assetsDir, 0);
+  const headerTemplate = getHeaderTemplate(doc, theme);
+  const footerTemplate = getFooterTemplate(doc, theme);
+
+  let totalPages = doc.course.totalPages;
+  if (!totalPages || totalPages <= 0) {
+    console.log('📄 حساب إجمالي عدد الصفحات بدقة...');
+    const probeHtml = generateHtml(doc, assetsDir, 0).html;
+    totalPages = await getPdfPageCount(probeHtml, footerTemplate);
+    console.log(`   ✓ إجمالي عدد الصفحات المحسوب: ${totalPages}`);
+  } else {
+    console.log(`   ✓ إجمالي عدد الصفحات المحدد: ${totalPages}`);
+  }
+
+  // Update doc with accurate total pages
+  doc.course.totalPages = totalPages;
+
+  // Step 4: Generate final HTML with accurate total pages
+  console.log('🎨 إنشاء المستند HTML النهائي...');
+  const { html } = generateHtml(doc, assetsDir, totalPages);
 
   // Save HTML preview
   if (!fs.existsSync(outputDir)) {
@@ -70,13 +89,9 @@ async function main(): Promise<void> {
   fs.writeFileSync(htmlPreviewPath, html, 'utf-8');
   console.log(`   ✓ HTML: ${htmlPreviewPath}`);
 
-  // Step 4: Generate header & footer templates
-  const headerTemplate = getHeaderTemplate(doc, theme);
-  const footerTemplate = getFooterTemplate(doc, theme);
-
-  // Step 5: Generate PDF (Pass 1)
+  // Step 5: Generate PDF & preview images
   console.log('🖨️  تحويل إلى PDF...');
-  let result = await generatePdf({
+  const result = await generatePdf({
     html,
     headerTemplate,
     footerTemplate,
@@ -85,23 +100,9 @@ async function main(): Promise<void> {
     generatePreviews: true,
   });
 
-  // If pageCount is detected, re-render pass 2 to inject accurate page count into the first-page header
-  if (result.pageCount > 0) {
-    const pass2 = generateHtml(doc, assetsDir, result.pageCount);
-    fs.writeFileSync(htmlPreviewPath, pass2.html, 'utf-8');
-    result = await generatePdf({
-      html: pass2.html,
-      headerTemplate,
-      footerTemplate,
-      pdfPath: outputPdf,
-      previewDir,
-      generatePreviews: true,
-    });
-  }
-
   console.log('');
   console.log('╔══════════════════════════════════════════════════════════╗');
-  console.log(`║   ✅  تم إنشاء PDF — ${result.pageCount} صفحات`);
+  console.log(`║   ✅  تم إنشاء PDF بنجاح — ${result.pageCount} صفحات`);
   console.log(`║   📄  ${result.pdfPath}`);
   console.log('╚══════════════════════════════════════════════════════════╝');
   console.log('');

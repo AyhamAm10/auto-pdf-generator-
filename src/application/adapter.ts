@@ -317,6 +317,7 @@ export function adaptLegacyDocument(legacy: any): DocumentData {
       lecture: meta.lecture || '1',
       doctor: meta.professor,
       academicYear: meta.academicYear,
+      totalPages: meta.totalPages ? Number(meta.totalPages) : undefined,
     },
     sections,
     themeOverrides: doc.theme ? {
