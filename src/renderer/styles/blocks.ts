@@ -39,15 +39,15 @@ export function buildBlocksCss(): string {
       display: flex;
       align-items: center;
       gap: 8px;
-      margin: 4px 0 6px 0;
-      border-bottom: 2px solid var(--border-color, #E2E8F0);
+      margin: 6px 0 6px 0;
+      border-bottom: 1.5px solid #E2E8F0;
       padding-bottom: 5px;
       break-after: avoid;
     }
 
     .h1-line-accent {
-      width: 6px;
-      height: 24px;
+      width: 5px;
+      height: 22px;
       background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
       border-radius: 3px;
       flex-shrink: 0;
@@ -61,20 +61,20 @@ export function buildBlocksCss(): string {
     }
 
     .h1-title {
-      font-size: 18px;
-      font-weight: 800;
+      font-size: 17px;
+      font-weight: 700;
       color: var(--primary-color);
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     .h1-badge {
-      background-color: var(--light-bg);
+      background-color: #F1F5F9;
       color: var(--primary-color);
-      border: 1px solid var(--border-color);
+      border: 1px solid #E2E8F0;
       padding: 2px 8px;
       border-radius: 6px;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     /* ------------------------------------------------------------- */
@@ -83,14 +83,14 @@ export function buildBlocksCss(): string {
     .element-h2-container {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin: 4px 0 2px 0;
+      gap: 7px;
+      margin: 5px 0 3px 0;
       break-after: avoid;
     }
 
     .h2-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background-color: var(--secondary-color);
       flex-shrink: 0;
@@ -98,30 +98,30 @@ export function buildBlocksCss(): string {
 
     .h2-prefix {
       color: var(--secondary-color);
-      font-weight: 800;
-      font-size: 15px;
+      font-weight: 700;
+      font-size: 14px;
     }
 
     .h2-title {
-      font-size: 15px;
+      font-size: 14.5px;
       font-weight: 700;
       color: var(--heading-color);
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     /* ------------------------------------------------------------- */
     /* عناوين H3                                                     */
     /* ------------------------------------------------------------- */
     .element-h3-container {
-      margin: 2px 0;
+      margin: 4px 0 2px 0;
       break-after: avoid;
     }
 
     .h3-title {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 700;
       color: #334155;
-      line-height: 1.25;
+      line-height: 1.3;
     }
 
     /* ------------------------------------------------------------- */
@@ -341,26 +341,26 @@ export function buildBlocksCss(): string {
     /* ------------------------------------------------------------- */
     .element-table-wrapper {
       width: 100%;
-      margin: 2px 0;
-      border-radius: 6px;
-      border: 1px solid #CBD5E1;
-      overflow: visible;
+      margin: 4px 0;
+      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      overflow: hidden;
     }
 
     .table-caption {
-      background: #F1F5F9;
+      background: #F8FAFC;
       color: #1E293B;
       font-weight: 700;
-      padding: 4px 10px;
-      font-size: 12.5px;
-      border-bottom: 1px solid #CBD5E1;
+      padding: 6px 12px;
+      font-size: 13px;
+      border-bottom: 1px solid #E2E8F0;
     }
 
     .element-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      line-height: 1.25;
+      font-size: 12.5px;
+      line-height: 1.34;
       table-layout: auto;
     }
 
@@ -368,7 +368,7 @@ export function buildBlocksCss(): string {
       background: var(--primary-color);
       color: #FFFFFF;
       font-weight: 700;
-      padding: 6px 8px;
+      padding: 7px 10px;
       text-align: right;
       border: 1px solid var(--primary-color);
       word-wrap: break-word;
@@ -376,7 +376,7 @@ export function buildBlocksCss(): string {
     }
 
     .element-table td {
-      padding: 5px 8px;
+      padding: 6px 10px;
       border: 1px solid #E2E8F0;
       color: #1E293B;
       word-wrap: break-word;
@@ -385,7 +385,7 @@ export function buildBlocksCss(): string {
     }
 
     .element-table tr.tr-odd {
-      background-color: #F8FAFC;
+      background-color: #FAFBFD;
     }
 
     .element-table tr.tr-even {
@@ -580,22 +580,22 @@ export function buildBlocksCss(): string {
     /* ------------------------------------------------------------- */
     .element-quote {
       position: relative;
-      background: #F8FAFC;
-      border-right: 4px solid var(--primary-color);
+      background: #FAFBFD;
+      border: 1px solid #E2E8F0;
+      border-right: 3px solid var(--primary-color);
       padding: 8px 14px;
-      border-radius: 0 6px 6px 0;
-      font-style: italic;
+      border-radius: 0 8px 8px 0;
       break-inside: avoid;
     }
 
     .quote-text {
-      font-size: 13.5px;
-      line-height: 1.25;
+      font-size: 13px;
+      line-height: 1.36;
       color: #334155;
     }
 
     .quote-author {
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 700;
       color: var(--primary-color);
       margin-top: 4px;
