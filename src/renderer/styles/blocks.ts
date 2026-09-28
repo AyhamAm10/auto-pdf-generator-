@@ -475,10 +475,21 @@ export function buildBlocksCss(): string {
 
     .qa-question-header {
       display: flex;
-      align-items: baseline;
+      align-items: flex-start;
       gap: 8px;
       font-weight: 700;
       font-size: 13.5px;
+    }
+
+    .qa-question-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .qa-q-line {
+      line-height: 1.4;
     }
 
     .qa-badge-q {
@@ -513,28 +524,66 @@ export function buildBlocksCss(): string {
 
     .qa-option-item {
       display: flex;
-      align-items: center;
-      gap: 6px;
+      align-items: flex-start;
+      gap: 8px;
       font-size: 13px;
-      padding: 3px 8px;
-      border-radius: 4px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid #E2E8F0;
+      background: #FFFFFF;
+      color: #334155;
+      margin-bottom: 2px;
+      transition: all 0.2s ease;
     }
 
     .option-correct {
-      background: #ECFDF5;
-      color: #065F46;
-      font-weight: 700;
-      border: 1px solid #A7F3D0;
+      background: #F0FDF4 !important;
+      color: #065F46 !important;
+      font-weight: 600;
+      border: 1.5px solid #10B981 !important;
     }
 
     .option-marker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #F1F5F9;
+      color: #475569;
+      font-size: 11px;
       font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .option-correct .option-marker {
+      background: #10B981;
+      color: #FFFFFF;
+    }
+
+    .option-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .option-text {
+      line-height: 1.35;
     }
 
     .correct-badge {
       margin-right: auto;
       font-size: 11px;
+      font-weight: 700;
       color: #059669;
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      padding: 2px 7px;
+      border-radius: 4px;
+      align-self: center;
     }
 
     .qa-answer-box {
@@ -690,6 +739,96 @@ export function buildBlocksCss(): string {
       display: flex;
       flex-direction: column;
       gap: 8px;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* بطاقات الترجمة الثنائية (إنكليزي ومترجم للعربية)               */
+    /* ------------------------------------------------------------- */
+    .element-bilingual-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 9px;
+      overflow: hidden;
+      margin: 5px 0;
+      break-inside: avoid;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    }
+
+    .bilingual-en-section {
+      background: #F8FAFC;
+      padding: 8px 12px 9px 12px;
+      direction: ltr;
+      text-align: left;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .bilingual-meta-bar {
+      margin-bottom: 4px;
+    }
+
+    .bilingual-badge-en {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--primary-color);
+      background: #E2E8F0;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
+    .bilingual-en-text {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      font-size: 13px;
+      line-height: 1.45;
+      color: #0F172A;
+      font-weight: 500;
+    }
+
+    .bilingual-ar-section {
+      background: #FFFFFF;
+      padding: 8px 12px 9px 12px;
+      direction: rtl;
+      text-align: right;
+      border-top: 1px dashed #E2E8F0;
+      border-right: 4px solid var(--secondary-color);
+    }
+
+    .bilingual-ar-header {
+      margin-bottom: 4px;
+    }
+
+    .bilingual-badge-ar {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--secondary-color);
+      background: #ECFDF5;
+      padding: 1px 7px;
+      border-radius: 4px;
+    }
+
+    .bilingual-ar-text {
+      font-family: var(--theme-font-family);
+      font-size: 12.5px;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    .bilingual-notes {
+      margin-top: 6px;
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11.5px;
+      color: #92400E;
+      line-height: 1.35;
+    }
+
+    .notes-icon {
+      font-weight: 700;
     }
   `;
 }

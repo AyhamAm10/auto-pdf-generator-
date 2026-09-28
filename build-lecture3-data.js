@@ -1,0 +1,668 @@
+const fs = require('fs');
+const path = require('path');
+
+const elements = [
+  // ===========================================================================
+  // ترويسة وعنوان الوحدة
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Unit 3 الوحدة الثالثة: Miracle Cure العلاج المعجزة",
+    "badge": "Unit 3"
+  },
+  {
+    "type": "h2",
+    "prefix": "•",
+    "text": "Lose the Fat around Your Waist and on Your Belly Now — تخلص من الدهن حول خصرك وعلى بطنك الآن"
+  },
+
+  // ===========================================================================
+  // C. Preparing To Read التحضير للقراءة
+  // ===========================================================================
+  {
+    "type": "h2",
+    "prefix": "C.",
+    "text": "Preparing To Read التحضير للقراءة"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "Background الخلفية",
+    "content": "Read the statements below, and answer the questions that follow.\n(اقرأ العبارات التالية، وأجب على الأسئلة التي تليها)."
+  },
+
+  // --- Facts about Quackery حقائق عن الشعوذة ---
+  {
+    "type": "h2",
+    "prefix": "1.",
+    "text": "Facts about Quackery حقائق عن الشعوذة"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 1",
+    "english": "Americans spend $27 billion a year getting their medical treatment from quacks.",
+    "arabic": "ينفق الأمريكيون 27 مليار دولار في العام في الحصول على علاجاتهم الطبية من المشعوذين."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 2",
+    "english": "38 million Americans have used a quack's products or treatments in the past year.",
+    "arabic": "38 مليون أمريكي استعملوا مستحضرات المشعوذين في علاجاتهم في العام الماضي."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Definition: Quackery",
+    "english": "Quackery: the practice of pretending to have medical knowledge or pretending to be able to cure diseases or stop the effects of aging.",
+    "arabic": "الشعوذة: ممارسة المعرفة الطبية أو ادعاؤها أو التظاهر بالقدرة على علاج الأمراض أو إيقاف آثار الشيخوخة."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Definition: Quacks",
+    "english": "Quacks: people who sell health products or treatments that don't work.",
+    "arabic": "المشعوذون: الأشخاص الذين يبيعون المستحضرات الصحية أو العلاجات التي لا تجدي نفعاً."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 3",
+    "english": "One out of ten people who uses a quack's products is hurt in some way.",
+    "arabic": "واحد من كل عشرة أشخاص يستعملون مستحضرات المشعوذين، يتضرر بطريقة ما."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 4",
+    "english": "60% of the people hurt by quacks are elderly.",
+    "arabic": "60% من الذين يتضررون من المشعوذين هم من كبار العمر."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 5",
+    "english": "A telephone survey by the American Cancer Society found that 9 percent of American cancer patients had used quacks treatments.",
+    "arabic": "وجد إحصاء هاتفي للجمعية الأمريكية للسرطان أن 9 في المئة من مرضى السرطان الأمريكيين قد استخدموا علاجات المشعوذين."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 6",
+    "english": "A survey of 166 doctors found that 25 cancer patient deaths may have been caused by a quack treatment.",
+    "arabic": "وجد إحصاء لـ 166 طبيب أن 25 حالة وفاة لمرضى السرطان ربما تكون قد نجمت عن علاج للمشعوذين."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Fact 7",
+    "english": "It is possible that more than $1 billion per year is spent on quack treatments (the same amount used for cancer research each year).",
+    "arabic": "يحتمل أن أكثر من مليار دولار في العام ينفق على علاجات المشعوذين (نفس المبلغ يستخدم لأبحاث السرطان كل عام)."
+  },
+
+  // --- أسئلة الخلفية ---
+  {
+    "type": "qa",
+    "question": "1. Some people don't go to a doctor when they are sick. They go to a person who gives them a treatment they believe will help them. Why do many people want to avoid going to a doctor?\n(بعض الناس لا يذهبون إلى الطبيب عندما يمرضون، بل يذهبون إلى شخص يعطيهم علاجاً يظنون أنه سيساعدهم. لماذا يريد الكثيرون تجنب الذهاب إلى الطبيب؟)",
+    "answer": "People want to avoid high medical costs, fear of painful treatments or surgery, and they look for quick, painless miracle cures."
+  },
+  {
+    "type": "qa",
+    "question": "2. From the facts above, we learn that quacks sell more than half of their products to elderly people. Why do you think the elderly buy these products?\n(من الحقائق الواردة أعلاه، نعلم أن المشعوذين يبيعون أكثر من نصف مستحضراتهم إلى كبار العمر. لم تعتقد أن كبار العمر يشترون هذه المستحضرات؟)",
+    "answer": "The elderly often suffer from chronic illnesses (like arthritis), pain, and fear of aging or death, making them more vulnerable to false promises of youth and painless relief."
+  },
+
+  // ===========================================================================
+  // Vocabulary for Comprehension مفردات للاستيعاب
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Vocabulary for Comprehension مفردات للاستيعاب",
+    "badge": "Vocabulary"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "تعليمات التمرين (Instructions)",
+    "content": "Underline the letter of the best definition for the underlined word(s) in each sentence.\n(ضع خطاً تحت أفضل تعريف للكلمات التي تحتها خط في كل جملة).\nالتمرين بعد الترجمة والحل:"
+  },
+
+  // Q1
+  {
+    "type": "qa",
+    "question": "1. Hi, my name is Anne. I'm depressed because I recently lost a lot of money. I was the victim of a quack. A victim is .........\n(مرحباً، اسمي آن، إني مكتئبة لأني خسرت مؤخراً كثيراً من المال. كنت ضحية مشعوذ. الضحية هو:)",
+    "options": [
+      "a. A person who is hurt by someone or something else. (الشخص الذي يتضرر من شخص أو شيء آخر)",
+      "b. A person who is helped by someone or something else. (الشخص الذي يساعده شخص أو شيء آخر)",
+      "c. A person who wants to help someone or something else. (الشخص الذي يريد أن يساعد شخصاً أو شيئاً آخر)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // Q2
+  {
+    "type": "qa",
+    "question": "2. Here's what happened. I wanted to get a job as a flight attendant on an airplane. The problem is that I had to lose ten pounds within one week to be able to get the job. It seemed impossible. Then I saw an ad in the newspaper for a quick weight-loss product. The ad said I could lose fourteen pounds in one week! It seemed like a miracle because I could lose the ten pounds and get the job. A miracle is .........\n(وإليكم ما حصل: أردت الحصول على عمل كمضيفة جوية في طائرة، والمشكلة هي أنه كان عليّ أن أفقد عشرة أرطال خلال أسبوع لأتمكن من الحصول على العمل. بدا الأمر مستحيلاً، ثم رأيت إعلاناً في الصحيفة عن مستحضر لفقد الوزن السريع، كان الإعلان يقول أنني بوسعي فقد 14 رطلاً في أسبوع واحد! بدا الأمر كمعجزة لأنني أستطيع أن أفقد عشرة أرطال وأحصل على العمل. المعجزة هي:)",
+    "options": [
+      "a. A normal event (حدث عادي)",
+      "b. A surprising and wonderful event (حدث مفاجئ ومدهش)",
+      "c. An impossible event (حدث مستحيل)"
+    ],
+    "correctOptionIndex": 1
+  },
+
+  // Q3
+  {
+    "type": "qa",
+    "question": "3. The quick weight-loss product was a drink. The drink was the discovery of a man who went to the Amazon forest. Some tribal people living in the forest taught him how to make the drink. They had been making the drink for hundreds of years. A discovery involves: .........\n(كان مستحضر فقد الوزن شراباً، وكان الشراب من اكتشاف رجل ذهب إلى غابة الأمازون. بعض أفراد القبائل التي تعيش هنالك علموه كيف يصنع الشراب، وكانوا يصنعونه لمئات السنين. الاكتشاف يشمل:)",
+    "options": [
+      "a. finding something that was lost (العثور على شيء كان مفقوداً)",
+      "b. finding something that nobody knew about before (العثور على شيء لم يعرف عنه شيئاً أي أحد من قبل)",
+      "c. finding something in another country (العثور على شيء في بلد آخر)"
+    ],
+    "correctOptionIndex": 1
+  },
+
+  // Q4
+  {
+    "type": "qa",
+    "question": "4. The man who discovered the drink was John Zimmerman. He had a clinic where people could stay for one week to lose weight. A clinic is .........\n(الرجل الذي اكتشف الشراب كان جون تسيمرمان، وكان لديه عيادة يستطيع الناس الإقامة فيها لأسبوع واحد لفقد الوزن. العيادة هي:)",
+    "options": [
+      "a. A place where people go to learn something (مكان يذهب الناس إليه ليتعلموا شيئاً ما)",
+      "b. A place where people go to relax (مكان يذهب إليه الناس ليستريحوا)",
+      "c. A place where people go to receive medical advice or treatment. (مكان يذهب إليه الناس ليتلقوا الاستشارة الطبية أو العلاج)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // Q5
+  {
+    "type": "qa",
+    "question": "5. If a person went to Mr. Zimmerman's clinic, Mr. Zimmerman guaranteed that the person would lose fourteen pounds. If the person didn't lose fourteen pounds, Mr. Zimmerman would give back the money he or she paid to come to the clinic. To guarantee something means to .........\n(إذا ذهب شخص إلى عيادة السيد تسيمرمان، فالسيد تسيمرمان يضمن أن يفقد الشخص أربعة عشر رطلاً، وإذا لم يفقدها يعيد له المال الذي دفعه للعيادة. يضمن شيئاً ما يعني:)",
+    "options": [
+      "a. Make something better (يجعل شيئاً ما أفضل)",
+      "b. advertise something (يعلن شيئاً ما)",
+      "c. promise that something will work (يعد بنجاح شيء ما)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // Q6
+  {
+    "type": "qa",
+    "question": "6. Mr. Zimmerman was also offering a special price for one month only. The treatment would only cost $2,000 instead of $3,000. To offer something means to .........\n(كان السيد تسيمرمان يعرض أيضاً سعراً خاصاً لشهر واحد فقط، فكان العلاج يكلف 2,000 دولار فقط بدلاً من 3,000 دولار. يعرض شيئاً ما يعني:)",
+    "options": [
+      "a. Provide it (يقدمه)",
+      "b. Loan it (يعيره، يقرضه)",
+      "c. Keep it (يحتفظ به)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // Q7
+  {
+    "type": "qa",
+    "question": "7. My parents didn't want me to buy this treatment because it was unproven. When something is unproven it .........\n(لم يردني أبواي أن أشتري العلاج لأنه غير مثبت. حينما يكون شيء ما غير مثبت فهو:)",
+    "options": [
+      "a. Can't be sold (لا يمكن أن يباع)",
+      "b. is expensive (مكلف)",
+      "c. has not been shown to be true (لم تثبت صحته)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // Q8
+  {
+    "type": "qa",
+    "question": "8. I paid the $2,000 and received the drinks. Unfortunately, I didn't lose any weight at all. When I tried to call the clinic, I found out the phone had been disconnected. The clinic was not real, and the drink didn't work. The whole business was a fraud. An example of fraud is: .........\n(دفعت مبلغ الـ 2,000 دولار واستلمت الشرابات، ولسوء الحظ لم أفقد أي وزن على الإطلاق. وعندما حاولت الاتصال بالعيادة، اكتشفت أن الهاتف مقطوع، ولم تكن العيادة حقيقية، ولم يُجد الشراب نفعاً. كان العمل كله احتيالاً. المثال على الاحتيال هو:)",
+    "options": [
+      "a. helping people who are sick (مساعدة المرضى)",
+      "b. tricking people by lying to them (خداع الناس بالكذب عليهم)",
+      "c. learning how to cure people (تعلم كيفية معالجة الناس)"
+    ],
+    "correctOptionIndex": 1
+  },
+
+  // Q9
+  {
+    "type": "qa",
+    "question": "9. The drink was harmless, but I lost $2,000! If something is harmless: .........\n(كان الشراب غير ضار، لكني خسرت 2,000 دولار! إن كان شيء ما غير ضار فهو:)",
+    "options": [
+      "a. it won't hurt you (لن يؤذيك)",
+      "b. it isn't real (ليس حقيقياً)",
+      "c. it won't make you gain weight (لن يجعلك تكتسب الوزن)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // Q10
+  {
+    "type": "qa",
+    "question": "10. And, unfortunately, the guarantee was also a lie. A lie is .........\n(ولسوء الحظ، كانت الكفالة أيضاً كذبة. الكذبة هي:)",
+    "options": [
+      "d. something that is promised (شيء يوعد به)",
+      "e. something that is true (شيء صحيح)",
+      "f. something that isn't true (شيء غير صحيح)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // Q11
+  {
+    "type": "qa",
+    "question": "11. Don't make the same mistake I did. Always ask your doctor or pharmacist before buying a new health product. To make a mistake is .........\n(لا ترتكب نفس الخطأ الذي ارتكبته أنا؛ اسأل طبيبك أو صيدليك دائماً قبل شراء مستحضر طبي جديد. يرتكب خطأ يعني:)",
+    "options": [
+      "g. To do something the wrong way (يفعل شيئاً ما بطريقة خطأ)",
+      "h. to forget something (ينسى شيئاً ما)",
+      "i. to take something (يأخذ شيئاً ما)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // ===========================================================================
+  // Focus on Reading التركيز على القراءة
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Focus on Reading — Reading One: A Miracle Cure? مقطع القراءة الأول: العلاج المعجزة؟",
+    "badge": "Reading 1"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Reading 1 — Part 1: Matt Bloomfield",
+    "english": "One year ago, Matt Bloomfield was told he had cancer. His doctor decided to treat his cancer immediately. A few months after the treatments, however, Matt found out that the cancer was still growing. He became sick and depressed. Because he always had pain, the doctors gave him more medicine, but it didn't help. Finally, the doctors told him that they were unable to do anything more; he had only six months to live. Matt would do anything to save his life. He went to see a doctor who turned out to be a complete quack.",
+    "arabic": "منذ سنة، قيل لـ 'مات بلومفلد' أنه مصاب بالسرطان، وقرر الأطباء أن يعالجوا سرطانه فوراً. ولكن بعد بضعة أشهر من العلاج، اكتشف 'مات' أن السرطان كان ما يزال ينمو، فأصبح سقيم النفس ومكتئباً. ولأنه كان دائماً يشعر بالألم، فقد أعطاه الأطباء مزيداً من الدواء، لكنه لم يساعده. وأخيراً، أخبره الأطباء أنهم كانوا عاجزين عن فعل أي شيء أكثر، وكان لديه ستة أشهر فقط ليعيش. كان 'مات' سيفعل أي شيء لينقذ حياته، فذهب لرؤية طبيب تبين أنه مشعوذ كلياً."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Reading 1 — Part 2: Dangerous Treatments",
+    "english": "More and more people are turning away from their doctors and, instead, going to individuals who have no medical training and who sell unproven treatments. They go to quacks to get everything from treatments for colds to cures for cancer. And they are putting themselves in dangerous situations. Many people don't realize how unsafe it is to use unproven treatments. First of all, the treatments usually don't work. They may be harmless, but if someone uses these products instead of proven treatments, he or she may be harmed. Why? Because during the time the person is using the product, his or her illness may be getting worse. This can even cause the person to die.",
+    "arabic": "يتحول مزيد ومزيد من الناس عن أطبائهم وبدلاً من ذلك، يذهبون إلى أشخاص لا تدريب طبياً لديهم ويبيعون علاجات غير مثبتة؛ فيذهبون إلى المشعوذين ليحصلوا على كل شيء من العلاجات لنزلات البرد إلى علاجات السرطان، وهم يضعون أنفسهم في أوضاع خطيرة. لا يدرك الكثيرون كم هو غير آمن استعمال علاجات غير مثبتة. أول كل شيء لا تجدي العلاجات نفعاً عادة؛ قد تكون غير ضارة، لكن إن كان الشخص يستعمل هذه المستحضرات بدلاً من العلاجات المثبتة، فقد يتضرر. لماذا؟ لأنه خلال الوقت الذي يستخدم فيه الشخص المستحضر، ربما يتفاقم مرضه، ويمكن حتى أن يسبب الموت للشخص."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Reading 1 — Part 3: Why People Trust Quacks",
+    "english": "So why do people trust quacks? People want the 'miracle cure'. They want the product that will solve their problem… quickly, easily, and completely. A patient may be so afraid of pain, or even of dying, that he or she will try anything. The quack knows this and offers an easy solution at a very high price. Quacks usually sell products and treatments for illnesses that generally have no proven cure. This is why we often hear about clinics that treat cancer or AIDS. Treatments for arthritis are also popular with quacks. Other common quackeries are treatments to lose weight quickly, to make hair grow again, and to keep a person young.",
+    "arabic": "إذاً لماذا يثق الناس بالمشعوذين؟ يريد الناس 'العلاج المعجزة'. يريدون المستحضر الذي سوف يحل مشكلتهم... بسرعة وبسهولة وبشكل كامل. قد يكون المريض خائفاً جداً من الألم، أو حتى من الموت، بحيث أنه سيجرب أي شيء. يعلم المشعوذ هذا ويقدم حلاً سهلاً بثمن باهظ جداً. يبيع المشعوذون المستحضرات والعلاجات عادة للأمراض التي لا علاج مثبتاً لها عموماً؛ ولهذا فغالباً ما نسمع عن عيادات تعالج السرطان أو الإيدز. كذلك فإن علاجات التهاب المفاصل (arthritis) ذات شعبية لدى المشعوذين. وأنواع الشعوذة الأخرى الشائعة هي علاجات لفقد الوزن بسرعة ولجعل الشعر ينمو ثانية وللحفاظ على شباب المرء."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Reading 1 — Part 4: How to Recognize a Quack",
+    "english": "How can you recognize a quack? Sometimes it's easy because he or she offers something we know is impossible. A drink to keep you young is an example of this. But many times, these people lie, saying that their product was made because of a recent scientific discovery. This makes it more difficult to know if the product is real or a fraud. Another way to recognize quackery is that many quacks will say their product is good for many different illnesses, not just one thing. They usually like to offer money-back guarantees if their treatment doesn't work. Unfortunately, the guarantee is often also a lie. Finally, the fraudulent clinic will often be in another country. Laws in the United States make it illegal for a quack to have a clinic in the United States because the quack doesn't have the proper medical training.",
+    "arabic": "كيف تستطيع التعرف على المشعوذ؟ أحياناً الأمر سهل لأنه يعرض شيئاً نعلم أنه مستحيل؛ شراب لحفظ شبابك هو مثال على ذلك. لكن في مرات كثيرة، يكذب هؤلاء الأشخاص قائلين أن مستحضرهم صنع بسبب اكتشاف علمي حديث، وهذا يجعل الأمر أصعب لمعرفة إن كان المستحضر حقيقياً أم احتيالاً. الطريقة الأخرى للتعرف على الشعوذة هي أن كثيراً من المشعوذين سيقولون أن مستحضرهم جيد لأمراض مختلفة كثيرة، لا لشيء واحد فقط. فهم يحبون أن يعرضوا ضمانات برد المال إذا لم يُجدِ علاجهم نفعاً، ولسوء الحظ، غالباً ما تكون الضمانة كذبة. وأخيراً، غالباً ما تكون العيادة المزيفة في بلد آخر؛ فالقوانين في الولايات المتحدة تجعل من غير المشروع للمشعوذ أن يمتلك عيادة في الولايات المتحدة لأنه لا يملك التدريب الطبي المناسب."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Reading 1 — Part 5: Customer Testimonials and Protection",
+    "english": "Quacks try to sell their products in similar ways. They will invite you to read testimonials, letters written by satisfied customers. These frauds will also promise quick, exciting cures. Often they say the product is made in a secret way or with something secret in it which can only be bought from a particular company. Quacks will also say that doctors and the rest of the medical community are against them. You are not powerless. There are things you can do to protect yourself from health fraud. Before you buy a product or treatment, check to see if it's the real thing. Talk to a doctor, pharmacist or another health professional. If you've been the victim of health fraud, you can complain to certain organizations. In the United States, the Better Business Bureau, the Food and Drug Administration (FDA), the Federal Trade Commission, or the National Council against Health Fraud will help you. Don't make the mistake of letting yourself or anyone you know become a victim of health fraud. It could cost you a lot of money or, worse yet, your life.",
+    "arabic": "يحب المشعوذون أن يبيعوا مستحضراتهم بطرق متشابهة؛ وسوف يدعونك لقراءة شهادات (testimonials)، أي رسائل مكتوبة من زبائن راضين. وهذه الاحتياالات ستعد أيضاً بعلاج مثير وسريع، وغالباً ما يقولون إن مستحضراتهم مصنوعة بطريقة سرية أو من شيء سري فيها لا يمكن شراؤه إلا من شركة معينة. كذلك أيضاً سيقول المشعوذون إن الأطباء وبقية المجتمع الطبي ضدهم. أنت لست بلا قدرة؛ هنالك أشياء تستطيع فعلها لحماية نفسك من الاحتيال الصحي: قبل أن تشتري مستحضراً أو علاجاً، تأكد من رؤية إن كان شيئاً حقيقياً؛ تحدث مع طبيب أو صيدلي أو مختص آخر بالصحة. وإن كنت ضحية احتيال صحي، تستطيع أن تشتكي إلى منظمات معينة؛ ففي الولايات المتحدة، سوف يساعدك كل من 'مكتب التجارة الأفضل' أو 'إدارة الغذاء والدواء' (FDA) أو 'لجنة التجارة الاتحادية' أو 'المجلس القومي لمكافحة الاحتيال الصحي'. لا ترتكب خطأ السماح لنفسك أو أي شخص آخر تعرفه بأن يصبح ضحية للاحتيال الصحي؛ فقد يكلفك الكثير من المال، أو أسوأ من ذلك: حياتك."
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "تعريف مصطلح التهاب المفاصل (Arthritis)",
+    "content": "• arthritis: a condition in which a person's joints are swollen and painful.\n(التهاب المفاصل: حالة تكون فيها مفاصل الشخص متورمة ومؤلمة)."
+  },
+
+  // ===========================================================================
+  // Reading For Main Ideas القراءة لأجل الأفكار الرئيسية
+  // ===========================================================================
+  {
+    "type": "h2",
+    "prefix": "2.",
+    "text": "Reading For Main Ideas القراءة لأجل الأفكار الرئيسية"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "تعليمات التمرين",
+    "content": "Complete the main ideas below with the most appropriate word.\n(أكمل الأفكار الرئيسية أدناه بالكلمة المناسبة)."
+  },
+
+  // MCQ 1
+  {
+    "type": "qa",
+    "question": "1. Different quacks often try to sell their products in ............ ways.\n(غالباً ما يحاول المشعوذون أن يبيعوا مستحضراتهم بطرق ............)",
+    "options": [
+      "a. similar (متشابهة)",
+      "b. Different (مختلفة)",
+      "c. Varied (متنوعة)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // MCQ 2
+  {
+    "type": "qa",
+    "question": "2. It's ............ to use quacks' products.\n(من ............ استخدام مستحضرات المشعوذين.)",
+    "options": [
+      "a. fun (الممتع)",
+      "b. illegal (غير المشروع)",
+      "c. dangerous (الخطير)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // MCQ 3
+  {
+    "type": "qa",
+    "question": "3. Quacks want to sell products for illnesses that have no ............ because their products don't really work.\n(يريد المشعوذون بيع مستحضراتهم لأجل الأمراض التي ليس لها ............ لأن مستحضراتهم لا تجدي نفعاً.)",
+    "options": [
+      "a. medications (أدوية)",
+      "b. cure (علاج)",
+      "c. side effects (أعراض جانبية)"
+    ],
+    "correctOptionIndex": 1
+  },
+
+  // MCQ 4
+  {
+    "type": "qa",
+    "question": "4. If you are ............ about buying something from a quack, there are people and organizations that can help you.\n(إن كنت ............ من شراء شيء من مشعوذ، فهنالك أشخاص ومؤسسات تستطيع مساعدتك.)",
+    "options": [
+      "a. excited (متحمس)",
+      "b. worried (قلق)",
+      "c. satisfied (راض)"
+    ],
+    "correctOptionIndex": 1
+  },
+
+  // MCQ 5
+  {
+    "type": "qa",
+    "question": "5. There are many things a person can look for to determine if ............ is real or comes from a quack.\n(هنالك أشياء كثيرة يمكن أن يبحث الشخص عنها لتحديد إن كان ............ حقيقياً أو يأتي من مشعوذ.)",
+    "options": [
+      "a. product (المستحضر)",
+      "b. secret (السر)",
+      "c. salesman (البائع)"
+    ],
+    "correctOptionIndex": 0
+  },
+
+  // MCQ 6
+  {
+    "type": "qa",
+    "question": "6. People will often go to a quack because they want an easy answer for their ............\n(غالباً ما يذهب الناس إلى مشعوذ لأنهم يريدون إجابة سهلة على ............ـهم.)",
+    "options": [
+      "a. child (طفل)",
+      "b. customer (زبون)",
+      "c. problem (مشكلة)"
+    ],
+    "correctOptionIndex": 2
+  },
+
+  // ===========================================================================
+  // Reading Two: The Organic Health Center Ad
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Reading Two: The Organic Health Center إعلان مركز الصحة العضوية",
+    "badge": "Reading 2"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Harrison's Pitch",
+    "english": "Do you have cancer? Have the doctors given you no hope? I can help you. My name is Benjamin Harrison. I am the founder of the Organic Health Center. My health center offers the most advanced treatments for curing cancer and other diseases. After traveling around the world for nine years looking for a cure for myself, I was able to learn the causes of cancer. Now, I can help others by offering them a cure. This cure is available only at the Organic Health Center. As a result of my experiences, I realized that Western doctors are unqualified to help their patients. I, on the other hand, have learned how to use the best herbs and organic foods to heal, and I am qualified to help you. That's why doctors will tell you not to trust me. They know that I can do something they can't do. My program focuses on the whole body. It works on the cause of the cancer. I will put you on the healthiest diet available. This diet uses the best herb and plant products gathered from my travels around the world. All of the products I use are natural, so they won't make you feel sick. After one to six months on this diet, you will be cured of cancer.",
+    "arabic": "هل أنت مصاب بالسرطان؟ هل قطع الأطباء الأمل منك؟ أنا أستطيع مساعدتك! اسمي بنيامين هاريسون، أنا مؤسس مركز الصحة العضوية. يقدم هذا المركز الصحي العلاج الأكثر تقدماً لمعالجة السرطان والأمراض الأخرى. بعد السفر في أنحاء العالم تسع سنوات باحثاً عن علاج لنفسي، تمكنت من معرفة أسباب السرطان، والآن أستطيع أن أساعد الآخرين بعرض علاج عليهم. هذا العلاج متوفر فقط في مركز الصحة العضوية. نتيجة لتجاربي، أدركت أن الأطباء الغربيين غير مؤهلين لمساعدة مرضاهم؛ وأنا من الناحية الأخرى، تعلمت كيف أستخدم أفضل الأعشاب والأغذية العضوية للشفاء وأنا مؤهل لمساعدتك، ولهذا السبب سيخبرك الأطباء بألا تثق بي لأنهم يعلمون أنني أستطيع أن أفعل شيئاً لا يستطيعون فعله. يركز برنامجي على كامل الجسم، ويعمل على سبب السرطان. سوف أضعك على أكثر حمية صحية متوفرة، تستخدم هذه الحمية أفضل الأعشاب والمستحضرات النباتية المجموعة من أسفاري حول العالم، وجميع المستحضرات طبيعية لذا لن تصيبك بالمرض. بعد شهر إلى ستة أشهر من هذه الحمية، ستشفى من السرطان."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Harrison's Programs",
+    "english": "Here are some of the programs my center offers:\n• PROGRAM A: For all types of cancers. Stay at my clinic for one month of treatment. Then continue the treatment in your home for two more months.\n• PROGRAM B: For cancer detected early. Complete a sixty-day program in your home. Eat a special diet with herbs and other healthy foods. Also follow an exercise schedule.\n• PROGRAM C: For all other cancers. Complete a ninety-day program in your home. Eat a special diet with herbs and other healthy foods.",
+    "arabic": "وها هي بعض البرامج التي يقدمها مركزي:\n• البرنامج أ: لجميع أنواع السرطان. أقم في عيادتي شهراً واحداً للعلاج، ثم تابع العلاج في منزلك شهرين آخرين.\n• البرنامج ب: للسرطان المكتشف باكراً. أكمل برنامجاً من ستين يوماً في منزلك؛ تناول حمية خاصة مع الأعشاب والأغذية الصحية الأخرى، واتبع أيضاً برنامج تمرين.\n• البرنامج ت: لجميع أنواع السرطان. أكمل برنامجاً من تسعين يوماً في منزلك؛ تناول حمية خاصة مع الأعشاب والأغذية الصحية الأخرى."
+  },
+  {
+    "type": "table",
+    "title": "المفردات الخاصة بإعلان هاريسون (Key Vocabulary Definitions)",
+    "headers": ["الكلمة (Word)", "التعريف بالإنكليزية (Definition)", "الترجمة بالعربية"],
+    "rows": [
+      ["1) founder", "the person who started a program or an organization", "المؤسس: الشخص الذي باشر ببرنامج أو مؤسسة."],
+      ["2) herbs", "plants that can be used for cooking or medicine", "الأعشاب: النباتات التي يمكن استخدامها للطهي أو الدواء."],
+      ["3) organic", "grown naturally without chemicals", "عضوي: مزروع طبيعياً بدون مواد كيميائية."],
+      ["4) qualified", "to be properly trained in something", "مؤهل: مدرب تدريباً مناسباً في شيء ما."]
+    ]
+  },
+
+  // ===========================================================================
+  // Focus On Vocabulary: Prefixes and Suffixes
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Focus On Vocabulary التركيز على المفردات: البادئات واللاحقات",
+    "badge": "Word Analysis"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Text Excerpt",
+    "english": "• Laws in the United States make it illegal for a quack to...\n• Many people don't realize how unsafe it is to use unproven treatments.\n• You are not powerless.",
+    "arabic": "• القوانين في الولايات المتحدة تجعل من غير المشروع للمشعوذ أن...\n• لا يدرك الكثيرون كم هو غير آمن استعمال علاجات غير مثبتة.\n• أنت لست بلا قدرة."
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "الشرح النظري للقاعدة (Rule Explanation)",
+    "content": "The underlined parts of the words above are called prefixes if they come at the beginning of words, and suffixes if they come at the end of words. They can change the meaning of a word.\nFor example, legal, proven, safe, and power all have positive meanings.\nIllegal, unproven, unsafe, and powerless all have negative meanings.\nThe prefixes il- and un- mean 'not'. When you add il- to legal, the meaning changes to 'not legal'. When you add un- to proven and safe, the meaning changes to 'not proven' and 'not safe'.\nPower has a positive meaning, but when you add the suffix -less which means 'without', the meaning becomes 'without power', which is negative.\n(الأجزاء المسطرة تسمى البادئات إذا جاءت في بداية الكلمات، واللاحقات إذا جاءت في نهاية الكلمات. يمكنها أن تغير معنى الكلمة: البادئات il- و un- تعني 'ليس'، واللاحقة -less تعني 'بدون')."
+  },
+  {
+    "type": "table",
+    "title": "قائمة البادئات واللاحقات ومعانيها (Prefixes & Suffixes Chart)",
+    "headers": ["البادئة (Prefix)", "المعنى (Meaning)", "اللاحقة (Suffix)", "المعنى (Meaning)"],
+    "rows": [
+      ["Un-", "not (ليس)", "-less", "without (بلا، بدون)"],
+      ["Ir- / il- / im-", "not (ليس)", "-able / -ible", "can be done (يمكن فعله)"],
+      ["Mis-", "bad, fail (سيء، يفشل)", "—", "—"]
+    ]
+  },
+  {
+    "type": "table",
+    "title": "الكلمات ذات المعنى السلبي والموجب (Negative vs Positive Meanings)",
+    "headers": ["الكلمة (Word)", "المعنى بالعربية", "نوع المعنى (Negative / Positive)"],
+    "rows": [
+      ["Unable", "غير قادر", "Negative (سلبي)"],
+      ["Improper", "غير مناسب", "Negative (سلبي)"],
+      ["Knowledgeable", "مطلع، ذو معرفة", "Positive (إيجابي)"],
+      ["Unpopular", "غير شعبي", "Negative (سلبي)"],
+      ["Undecided", "غير مقرر", "Negative (سلبي)"],
+      ["Hopeless", "بلا أمل", "Negative (سلبي)"],
+      ["Irregular", "غير نظامي", "Negative (سلبي)"],
+      ["Misunderstand", "يسيء الفهم", "Negative (سلبي)"],
+      ["Helpless", "لا حول له", "Negative (سلبي)"],
+      ["Misused", "أساء الاستعمال", "Negative (سلبي)"],
+      ["Irresponsible", "غير مسؤول", "Negative (سلبي)"],
+      ["Likable", "محبوب", "Positive (إيجابي)"]
+    ]
+  },
+
+  // --- تمرين استبدال الكلمات ---
+  {
+    "type": "h2",
+    "prefix": "3.",
+    "text": "تمرين استبدال الكلمات بكلمات الإطار (Vocabulary Substitution Exercise)"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "تعليمات التمرين وكلمات الإطار",
+    "content": "For each sentence, find the word in the box that has the same meaning as the underlined words. Then write each sentence using the word from the box.\nكلمات الإطار: Mistake (خطأ) | Fraud (احتيال) | Discovery (اكتشاف) | Unproven (غير مثبت) | Lie (كذب) | Harmless (غير ضار) | Guarantee (كفالة، ضمانة) | Founder (مؤسس) | Victim of (ضحية لـ) | Offer (يعرض)."
+  },
+  {
+    "type": "qa",
+    "question": "1. The quack provided testimonials for interested people to read.\n(قدم المشعوذ شهادات إلى الأشخاص المهتمين ليقرؤوها).",
+    "answer": "The quack offered testimonials for interested people to read.\n(عرض المشعوذ شهادات على الأشخاص المهتمين ليقرؤوها)."
+  },
+  {
+    "type": "qa",
+    "question": "2. Even though many people believe that taking large amounts of vitamins can cure some diseases, this treatment is not definitely true.\n(رغم أن أشخاصاً كثيرين يعتقدون أن تناول مقادير كبيرة من الفيتامينات يمكن أن يشفي بعض الأمراض، فهذا العلاج ليس بالتأكيد صحيحاً).",
+    "answer": "Even though many people believe that taking large amounts of vitamins can cure some diseases, this treatment is unproven.\n(فهذا العلاج غير مثبت)."
+  },
+  {
+    "type": "qa",
+    "question": "3. The product came with a paper that said it would definitely work.\n(جاء المستحضر مع ورقة تقول أنه سينجح بالتأكيد).",
+    "answer": "The product came with a guarantee.\n(جاء المستحضر مع كفالة / ضمانة)."
+  },
+  {
+    "type": "qa",
+    "question": "4. The thing that nobody had ever seen before was a new medicine from the rain forest.\n(الشيء الذي لم يره أحد من قبل كان دواءً جديداً من الغابة المطرية).",
+    "answer": "The discovery was a new medicine from the rain forest.\n(الاكتشاف كان دواءً جديداً من الغابة المطرية)."
+  },
+  {
+    "type": "qa",
+    "question": "5. Some telemarketers sell things that are a lie.\n(بعض المسوقين عبر الهاتف يبيعون أشياء هي احتيال).",
+    "answer": "Some telemarketers sell things that are a fraud."
+  },
+  {
+    "type": "qa",
+    "question": "6. 'Quacks Anonymous' is an organization that helps victims of fraud. The person who started it is a successful businesswoman from California.\n('جمعية المشعوذين المغفلة' مؤسسة تساعد ضحايا الاحتيال. الشخص الذي بدأ بها هو سيدة أعمال ناجحة من كاليفورنيا).",
+    "answer": "The founder is a successful businesswoman from California.\n(المؤسس هو سيدة أعمال ناجحة من كاليفورنيا)."
+  },
+  {
+    "type": "qa",
+    "question": "7. Many cancer patients have made an error by using a quack's product that didn't work and delaying seeing a doctor.\n(كثير من مرضى السرطان ارتكبوا خطأً باستعمال مستحضر المشعوذ الذي لم ينجح، والتأخر بمراجعة الطبيب).",
+    "answer": "Many cancer patients have made a mistake by using a quack's product that didn't work and delaying seeing a doctor."
+  },
+  {
+    "type": "qa",
+    "question": "8. The person who was harmed by health fraud called the National Council against Health Fraud to report the quack.\n(الشخص الذي تضرر من الاحتيال الصحي اتصل بالمجلس القومي لمكافحة الاحتيال الصحي ليبلغ عن المشعوذ).",
+    "answer": "The victim of health fraud called the National Council against Health Fraud to report the quack.\n(ضحية الاحتيال الصحي اتصل بالمجلس القومي...)."
+  },
+  {
+    "type": "qa",
+    "question": "9. Many quack products are not going to hurt anyone.\n(كثير من مستحضرات المشعوذين لا تضر أي أحد).",
+    "answer": "Many quack products are harmless.\n(كثير من مستحضرات المشعوذين غير ضارة)."
+  },
+  {
+    "type": "qa",
+    "question": "10. Quacks often write or say something that isn't true and say that their product is based on a recent scientific discovery.\n(المشعوذون غالباً ما يكتبون أو يقولون شيئاً غير صحيح ويقولون إن مستحضرهم مبني على اكتشاف علمي حديث).",
+    "answer": "Quacks often lie and say that their product is based on a recent scientific discovery.\n(المشعوذون غالباً ما يكذبون ويقولون إن مستحضرهم مبني على اكتشاف علمي حديث)."
+  },
+
+  // ===========================================================================
+  // Summary Writing كتابة الملخص
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "A. Summary Writing كتابة الملخص",
+    "badge": "Writing"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Summary of Organic Health Center",
+    "english": "'The Organic Health Center' is an advertisement for a clinic to cure cancer. The founder is Benjamin Harrison, and he offers the most advanced treatments available. Through his travels, Harrison learned the causes and the cure of cancer. As a result, he knows what doctors don't know, and his treatments work. Using the healthiest diet with the best herbs and plant products available, he cures cancer. The clinic has several programs for different diseases, and they are all guaranteed.",
+    "arabic": "'مركز الصحة العضوية' هو إعلان لعيادة لعلاج السرطان؛ المؤسس هو بنيامين هاريسون، وهو يقدم العلاجات الأكثر تقدماً المتاحة. من خلال أسفاره، تعلم هاريسون أسباب السرطان وعلاجه، ونتيجة لذلك فهو يعرف ما لا يعرفه الأطباء، وعلاجاته ناجحة. باستخدام نظام غذائي صحي مع أفضل الأعشاب والمنتجات النباتية المتاحة، فإنه يعالج السرطان. يوجد في العيادة عدة برامج لمختلف الأمراض وجميعها مضمونة."
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "عناصر الملخص الناجح (Parts of a Summary)",
+    "content": "A summary is a shorter version of a text. It helps the reader understand the most important information:\n• It contains the main idea or topic of the text. (أن يحتوي على الفكرة الرئيسية).\n• It contains the important supporting details of the text. (أن يحتوي على التفاصيل الداعمة الهامة).\n• It contains definitions of important words. (أن يحتوي على تعريفات للكلمات الهامة).\n• It doesn't contain the reader's opinions or other details. (ألا يحتوي على آراء القارئ الشخصية).\n• It is approximately one-fourth the length of the text. (يبلغ طوله حوالي ربع طول النص الأصلي)."
+  },
+  {
+    "type": "table",
+    "title": "ترتيب التفاصيل الداعمة لمقال 'A Miracle Cure?' (Ordering Supporting Details)",
+    "headers": ["الترتيب (Label)", "الجملة بالإنكليزية (Sentence)", "الترجمة بالعربية"],
+    "rows": [
+      ["Topic Sentence", "Many people are using quacks instead of doctors.", "كثير من الناس يستخدمون الدجالين بدلاً من الأطباء."],
+      ["SD1", "Unfortunately, these people often don't realize how dangerous it is to use a quack. It is dangerous because the product usually doesn't work. As a result, the patient's illness can be getting worse during the treatment.", "لسوء الحظ، هؤلاء الأشخاص في كثير من الأحيان لا يدركون مدى خطورة استخدام الدجال؛ إنه أمر خطير لأن المنتج عادة لا يعمل، ونتيجة لذلك يمكن أن يزداد مرض المريض سوءاً أثناء العلاج."],
+      ["SD2", "People often go to quacks because they want an easy solution for their problems and because they are afraid.", "كثيراً ما يلجأ الناس إلى الدجالين لأنهم يريدون حلاً سهلاً لمشاكلهم ولأنهم خائفون."],
+      ["SD3", "Quacks understand this. So they sell products for illnesses that have no cure, and people who are afraid of dying will pay any price for them.", "الدجالون يفهمون هذا، لذلك يبيعون منتجات لأمراض ليس لها علاج، والناس الذين يخافون من الموت سيدفعون أي ثمن مقابلها."],
+      ["SD4", "It can be difficult to know if someone is a quack, but there are ways.", "قد يكون من الصعب معرفة ما إذا كان شخص ما دجالاً، ولكن هناك طرق."],
+      ["SD5", "Quacks use similar techniques for selling their products.", "يستخدم الدجالون تقنيات مماثلة لبيع منتجاتهم."],
+      ["SD6", "If you are concerned about buying something from a quack, there are people and organizations that can help you.", "إذا كنت قلقاً بشأن شراء شيء ما من الدجال، فهناك أشخاص ومنظمات يمكنها مساعدتك."]
+    ]
+  },
+
+  // ===========================================================================
+  // Grammar Adjectives - Superlatives
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Grammar: Adjectives — Superlatives القواعد: صيغ التفضيل العليا للصفات",
+    "badge": "Grammar"
+  },
+  {
+    "type": "bilingual",
+    "badge": "Sentence Comparison",
+    "english": "1. a. The founder is Benjamin Harrison, and he offers advanced treatments.\n   b. The founder is Benjamin Harrison, and he offers the most advanced treatments available.\n2. a. Using a healthy diet with good herbs and plant products, he cures cancer.\n   b. Using the healthiest diet with the best herbs and plant products available, he cures cancer.",
+    "arabic": "1. أ. المؤسس هو بنيامين هاريسون، وهو يقدم علاجات متقدمة.\n   ب. المؤسس هو بنيامين هاريسون، وهو يقدم العلاجات الأكثر تقدماً المتاحة.\n2. أ. باستخدام نظام غذائي صحي مع الأعشاب والمنتجات النباتية الجيدة، فإنه يشفي من السرطان.\n   ب. باستخدام اتباع نظام غذائي صحي مع أفضل الأعشاب والمنتجات النباتية المتاحة، فإنه يعالج السرطان."
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "Superlatives of Adjectives قاعدة صيغ التفضيل",
+    "content": "We use the superlative form of the adjective when we are comparing two or more things and when we want to emphasize that one of the things has an exceptional quality.\nImagine, for example, that there are three herb products on sale. One costs two dollars, one costs five dollars, and one costs ten dollars. The two-dollar product is the least expensive one. The ten-dollar product is the most expensive one.\n(نستخدم صيغة التفضيل للصفة عندما نقارن بين ثلاثة أشياء أو أكثر وعندما نريد التأكيد على أن أحد الأشياء يتمتع بجودة استثنائية: المنتج بدولارين هو الأقل تكلفة the least expensive، والمنتج بعشرة دولارات هو الأغلى the most expensive)."
+  },
+  {
+    "type": "table",
+    "title": "طرق صياغة التفضيل الأعلى (Forming Superlatives)",
+    "headers": ["الحالة (Rule)", "الصيغة (Formula)", "الصفة المجردة", "صيغة التفضيل (Superlative)", "المعنى بالعربية"],
+    "rows": [
+      ["صفات المقطع الواحد", "the + adj + -est", "tall\ndark", "the tallest\nthe darkest", "الأطول\nالأكثر ظلمة"],
+      ["صفات المقطعين المنتهية بـ -y", "نقلب y إلى i + -est", "happy\nhealthy", "the happiest\nthe healthiest", "الأكثر سعادة\nالأصح"],
+      ["صفات المقطعين أو أكثر", "the most / the least + adj", "advanced\nbeautiful\nintelligent", "the most advanced\nthe most beautiful\nthe most intelligent", "الأكثر تقدماً\nالأجمل\nالأكثر ذكاءً"],
+      ["صفات شاذة غير منتظمة (Irregular)", "تُحفظ كما هي", "Good\nBad\nLittle\nFar", "the best\nthe worst\nthe least\nthe farthest / furthest", "الأفضل\nالأسوأ\nالأقل\nالأبعد"]
+    ]
+  },
+
+  // --- تمرين رسالة التزكية لمركز هاريسون ---
+  {
+    "type": "h2",
+    "prefix": "4.",
+    "text": "تمرين التفضيل الأعلى في رسالة التزكية (Testimonial Fill-in-the-Blanks)"
+  },
+  {
+    "type": "callout",
+    "variant": "tip",
+    "title": "تعليمات التمرين",
+    "content": "Look at the following testimonial for the Organic Health Center. Complete the sentences with the superlative forms of the adjectives in parentheses. Don't forget to use 'the'.\n(أكمل الجمل بصيغ التفضيل للصفات الموجودة بين قوسين، ولا تنس استخدام the)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Testimonial Letter Part 1",
+    "english": "To Whom It May Concern:\nIn 1997, I was diagnosed with cancer. I went through the treatments the doctors ordered. The doctors promised me I was getting better. But I could tell that I wasn't. My health was (1. bad) [the worst] it had ever been.\nThen I heard of Benjamin Harrison's Organic Health Center. I talked with him and asked him many questions. After talking with Harrison, I could tell that he was (2. educated) [the most educated] of anyone I had talked to.\nIt became clearer and clearer to me that using Western medicine was not (3. intelligent) [the most intelligent] way to treat my cancer.",
+    "arabic": "إلى من يهمه الأمر:\nفي عام 1997، تم تشخيص إصابتي بالسرطان، وخضعت للعلاجات التي طلبها الأطباء الذين وعدوني بأنني سأتحسن، ولكن كان بإمكاني أن أدرك أنني لم أكن كذلك؛ فقد كانت صحتي (1) [the worst — الأسوأ] كما كانت في أي وقت مضى.\nثم سمعت عن مركز الصحة العضوية التابع لبنجامين هاريسون، فتكلمت معه وطرحت عليه أسئلة كثيرة. وبعد التحدث معه، استطعت أن أقول إنه كان (2) [the most educated — الأكثر تعليماً وثقافة] من أي شخص تحدثت إليه.\nولقد أصبح أكثر وضوحاً بالنسبة لي أن استخدام الطب الغربي لم يكن (3) [the most intelligent — الطريقة الأكثر ذكاءً] لعلاج السرطان."
+  },
+  {
+    "type": "bilingual",
+    "badge": "Testimonial Letter Part 2",
+    "english": "I decided to try Harrison's cure for cancer. After only two weeks, I felt much better. And Harrison's cure was (4. easy) [the easiest] treatment of all the ones I tried.\nI would like everyone who reads this letter to know that I was cured after only three months. It has now been ten months, and my health is (5. good) [the best] it's ever been. My doctors say that my recovery is (6. fast) [the fastest] they have ever seen. This is because Harrison is (7. educated) [the most educated] health professional I know.\nI want to thank Benjamin Harrison for being (8. helpful) [the most helpful] person I met during my illness. Without his help, I might not be alive today! If you have cancer, contact Benjamin Harrison immediately. You deserve to be (9. healthy) [the healthiest] person you can be.",
+    "arabic": "قررت تجربة علاج هاريسون للسرطان، وبعد أسبوعين فقط شعرت بتحسن كبير، وكان علاج هاريسون (4) [the easiest — الأسهل] من بين كل العلاجات التي جربتها.\nأود أن يعلم كل من يقرأ هذه الرسالة أنني شفيت بعد ثلاثة أشهر فقط؛ ولقد مرت الآن عشرة أشهر، وصحتي (5) [the best — الأفضل] مما كانت عليه في أي وقت مضى. يقول أطبائي إن شفائي هو (6) [the fastest — الأسرع] مما شاهدوه حتى الآن، وذلك لأن هاريسون هو (7) [the most educated — المختص الصحي الأكثر تعليماً] ممن أعرفهم.\nأريد أن أشكر بنجامين هاريسون لكونه (8) [the most helpful — الشخص الأكثر عوناً ومساعدة] ممن قابلتهم أثناء مرضي؛ فبدون مساعدته قد لا أكون على قيد الحياة اليوم! إن كنت مصاباً بالسرطان، فاتصل ببنيامين هاريسون على الفور؛ فأنت تستحق أن تكون (9) [the healthiest — الشخص الأكثر صحة وعافية] بقدر ما تستطيع أن تكونه."
+  },
+  {
+    "type": "table",
+    "title": "ملخص حلول فراغات التفضيل لرسالة التزكية",
+    "headers": ["رقم الفراغ", "الصفة الأصلية", "صيغة التفضيل العليا (Superlative)", "التعليل"],
+    "rows": [
+      ["1", "bad", "the worst", "صفة شاذة غير منتظمة (Irregular)"],
+      ["2", "educated", "the most educated", "صفة متعددة المقاطع (Long adjective)"],
+      ["3", "intelligent", "the most intelligent", "صفة متعددة المقاطع (Long adjective)"],
+      ["4", "easy", "the easiest", "صفة تنتهي بـ y تُقلب إلى iest"],
+      ["5", "good", "the best", "صفة شاذة غير منتظمة (Irregular)"],
+      ["6", "fast", "the fastest", "صفة ذات مقطع واحد يضاف لها est"],
+      ["7", "educated", "the most educated", "صفة متعددة المقاطع (Long adjective)"],
+      ["8", "helpful", "the most helpful", "صفة متعددة المقاطع (Long adjective)"],
+      ["9", "healthy", "the healthiest", "صفة تنتهي بـ y تُقلب إلى iest"]
+    ]
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "خاتمة الوحدة الثالثة (The End of Unit 3)",
+    "content": "The End of Unit 3 — نهاية الوحدة الثالثة.\n(ملاحظة المنهاج: فيما يتعلق بالوحدتين الرابعة والخامسة فإن النصوص غير مطلوبة، ولكن تمارين النصوص مطلوبة وقد وضعت لكم مع الحل والترجمة)."
+  }
+];
+
+const docLecture3 = {
+  "$schema": "./schema.json",
+  "meta": {
+    "department": "جميع أقسام كلية التربية",
+    "year": "السنة الأولى",
+    "semester": "الفصل الأول",
+    "subject": "إنكليزي (1)",
+    "subjectType": "نظري",
+    "lecture": "المحاضرة 3: العلاج المعجزة",
+    "academicYear": "2024 - 2025"
+  },
+  "theme": {
+    "branchId": "ershad",
+    "showWatermark": true,
+    "fontSize": "13px",
+    "lineHeight": 1.3
+  },
+  "elements": elements
+};
+
+const outputPath = path.resolve(__dirname, 'data-lecture-3.json');
+fs.writeFileSync(outputPath, JSON.stringify(docLecture3, null, 2), 'utf8');
+console.log(`Successfully generated VERBATIM data-lecture-3.json with ${elements.length} elements!`);

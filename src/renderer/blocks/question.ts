@@ -15,17 +15,31 @@ export function renderQuestion(block: QuestionBlock): string {
   // Multiple choice options
   let optionsHtml = '';
   if (Array.isArray(block.options) && block.options.length > 0) {
-    const arabicIndex = ['أ', 'ب', 'ج', 'د', 'هـ'];
+    const englishLetters = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+    const arabicLetters = ['أ', 'ب', 'ج', 'د', 'هـ'];
     optionsHtml = `
       <div class="qa-options-list">
         ${block.options.map((opt, i) => {
           const isCorrect = block.correctOptionIndex === i;
           const optClass = isCorrect ? 'option-correct' : 'option-regular';
-          const letter = arabicIndex[i] || String(i + 1);
+          
+          let letter = '';
+          let text = opt;
+          const match = opt.match(/^([a-zA-Z\u0621-\u064A0-9])[\.\-\)]\s*([\s\S]*)$/);
+          if (match) {
+            letter = match[1];
+            text = match[2];
+          } else {
+            const isEnglish = /[a-zA-Z]/.test(opt) || /[a-zA-Z]/.test(block.question);
+            letter = isEnglish ? (englishLetters[i] || String(i + 1)) : (arabicLetters[i] || String(i + 1));
+          }
+
           return `
             <div class="qa-option-item ${optClass}">
-              <span class="option-marker">${letter}</span>
-              <span class="option-text">${escapeHtml(opt)}</span>
+              <span class="option-marker">${escapeHtml(letter)}</span>
+              <div class="option-content">
+                <div class="option-text" dir="auto">${renderRichText(text)}</div>
+              </div>
               ${isCorrect ? '<span class="correct-badge">✓ الإجابة الصحيحة</span>' : ''}
             </div>
           `;
@@ -55,11 +69,22 @@ export function renderQuestion(block: QuestionBlock): string {
     `;
   }
 
+  // Multi-line Question text handling
+  const qLines = (block.question || '').split('\n');
+  const questionContentHtml = qLines.map(line => {
+    const trimmed = line.trim();
+    if (!trimmed) return '';
+    const hasArabic = /[\u0600-\u06FF]/.test(trimmed);
+    const hasEnglish = /[a-zA-Z]/.test(trimmed);
+    const dir = hasEnglish && !hasArabic ? 'ltr' : hasArabic && !hasEnglish ? 'rtl' : 'auto';
+    return `<div class="qa-q-line" dir="${dir}">${renderRichText(trimmed)}</div>`;
+  }).filter(Boolean).join('');
+
   return `
     <div class="element-qa-card">
       <div class="qa-question-header">
         <div class="qa-q-prefix"><span class="qa-badge-q">س</span></div>
-        <div class="qa-question-text">${escapeHtml(block.question)}</div>
+        <div class="qa-question-text">${questionContentHtml}</div>
         ${tagHtml}
       </div>
       ${optionsHtml}

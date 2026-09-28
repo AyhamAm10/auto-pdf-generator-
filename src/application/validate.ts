@@ -105,6 +105,14 @@ const DividerBlockSchema = z.object({
   icon: z.string().optional(),
 });
 
+const BilingualBlockSchema = z.object({
+  type: z.literal('bilingual'),
+  english: z.string().min(1),
+  arabic: z.string().min(1),
+  badge: z.string().optional(),
+  notes: z.string().optional(),
+});
+
 const ContentBlockSchema = z.discriminatedUnion('type', [
   HeadingBlockSchema,
   ParagraphBlockSchema,
@@ -117,6 +125,7 @@ const ContentBlockSchema = z.discriminatedUnion('type', [
   ImageBlockSchema,
   SummaryBlockSchema,
   DividerBlockSchema,
+  BilingualBlockSchema,
 ]);
 
 // ---------------------------------------------------------------------------

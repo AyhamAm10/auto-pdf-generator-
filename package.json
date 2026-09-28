@@ -10,17 +10,27 @@
     "test": "vitest run",
     "test:watch": "vitest"
   },
-  "keywords": ["pdf", "puppeteer", "lecture", "notes", "education", "arabic", "rtl"],
+  "keywords": [
+    "pdf",
+    "puppeteer",
+    "lecture",
+    "notes",
+    "education",
+    "arabic",
+    "rtl"
+  ],
   "author": "مركز تصوير كلية التربية",
   "license": "ISC",
   "dependencies": {
+    "pdf-parse": "^2.4.5",
     "puppeteer": "^24.4.0",
+    "tesseract.js": "^7.0.0",
     "zod": "^3.23.0"
   },
   "devDependencies": {
-    "typescript": "^5.5.0",
-    "ts-node": "^10.9.0",
     "@types/node": "^20.14.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.5.0",
     "vitest": "^2.0.0"
   }
 }

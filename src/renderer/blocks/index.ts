@@ -22,6 +22,7 @@ import { renderQuote } from './quote';
 import { renderImage } from './image';
 import { renderSummary } from './summary';
 import { renderDivider } from './divider';
+import { renderBilingual } from './bilingual';
 
 /**
  * Render a single content block to HTML.
@@ -50,6 +51,8 @@ export function renderBlock(block: ContentBlock, theme: ResolvedTheme): string {
       return renderSummary(block);
     case 'divider':
       return renderDivider(block);
+    case 'bilingual':
+      return renderBilingual(block);
     default:
       console.warn(`[Block Registry] Unknown block type: ${(block as any).type}`);
       return '';

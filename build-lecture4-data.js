@@ -1,0 +1,370 @@
+const fs = require('fs');
+const path = require('path');
+
+const matchingOptions = [
+  "a. She needed to feed him. (كانت بحاجة لإطعامه)",
+  "b. He wanted to help her. (أراد مساعدتها)",
+  "c. He wanted to listen to the music. (أراد الاستماع للموسيقى)",
+  "d. He wanted to see why Gregor was late. (أراد أن يرى لم كان غريغور متأخراً)",
+  "e. They wanted to take a rest. (أرادوا أخذ قسط من الراحة)",
+  "f. His family wanted to keep him there. (أرادت أسرته إبقاءه هناك)",
+  "g. He wanted to beat Gregor. (أراد أن يضرب غريغور)"
+];
+
+const elements = [
+  // ---------------------------------------------------------------------------
+  // عنوان المحاضرة الرئيسي
+  // ---------------------------------------------------------------------------
+  {
+    "type": "h1",
+    "text": "Unit 4 الوحدة الرابعة: The Metamorphosis التحوّل لفرانز كافكا",
+    "badge": "Unit 4"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "توجيه أكاديمي هام حول منهاج الوحدة الرابعة",
+    "content": "وفق توجيه المنهاج: النصوص السردية المطولة للقصة غير مطلوبة، بينما كافة المفردات اللغوية، والمترادفات، وتمارين إعادة الصياغة (Paraphrasing)، وقواعد مصادر الغاية (Infinitives of Purpose) مطلوبة بدقة كاملة بحلها وترجمتها."
+  },
+
+  // ===========================================================================
+  // القسم الأول: مفردات الاستيعاب وتعاريفها المعتمدة (VOCABULARY FOR COMPREHENSION)
+  // ===========================================================================
+  {
+    "type": "h2",
+    "prefix": "1.",
+    "text": "Vocabulary for Comprehension مفردات للاستيعاب: جمل المنهاج وتعاريفها"
+  },
+  {
+    "type": "callout",
+    "variant": "tip",
+    "title": "تعليمات تمرين المفردات",
+    "content": "Guess the meaning of the underlined words in the sentences. Write your own definition, or synonym, on the line.\n(خمن معنى الكلمات المسطرة في الجمل، واكتب التعريف أو المرادف)."
+  },
+
+  // الجمل الـ 12 ثنائية اللغة
+  {
+    "type": "bilingual",
+    "badge": "1) supported",
+    "english": "1) My parents supported me until I finished college, but then I had to get a job and pay for everything by myself.",
+    "arabic": "أعالني أبواي حتى أنهيت الكلية، ولكن عندئذ اضطررت للحصول على عمل ودفع ثمن كل شيء بنفسي.",
+    "notes": "supported أعال = paid for what I needed (دفع ثمن ما أحتاجه)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "2) fainted",
+    "english": "2) When she saw the spider, she fainted and fell down on the floor.",
+    "arabic": "عندما رأت العنكبوت، أغمي عليها وسقطت على الأرض.",
+    "notes": "fainted أغمي عليها = passed out / lost consciousness (فقد الوعي)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "3) grabbed",
+    "english": "3) The thief grabbed the woman's purse and ran away with it.",
+    "arabic": "قبض اللص على حقيبة المرأة وفر بها.",
+    "notes": "grabbed قبض = took something quickly and roughly (أخذ شيئاً بسرعة وخشونة)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "4) beating",
+    "english": "4) Someone was beating on the door, and the loud noise woke up everyone in the house.",
+    "arabic": "كان شخص يضرب على الباب، وأيقظ الضجيج كل أحد في المنزل.",
+    "notes": "beating يضرب = hitting / banging loudly (يضرب تكراراً / يطرق بصوت عال)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "5) disgusting",
+    "english": "5) Some people don't want to get close to insects or touch them because they really don't like them. They think insects are disgusting.",
+    "arabic": "بعض الناس لا يريدون الاقتراب من الحشرات أو لمسها لأنهم لا يحبونها بحق؛ يعتقدون أن الحشرات مقرفة.",
+    "notes": "disgusting مقرفة = unpleasant / strongly disliked (كريهة ومكروهة بشدة)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "6) substance",
+    "english": "6) Many smokers wish that they could remove the bad substance from cigarettes. Then they could smoke without worrying about their health.",
+    "arabic": "يتمنى مدخنون كثيرون لو استطاعوا أن يزيلوا المادة السيئة من السجائر؛ ومن ثم يستطيعون التدخين دون قلق على صحتهم.",
+    "notes": "substance المادة = anything that one can touch (أي شيء يستطيع المرء لمسه)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "7) soothed",
+    "english": "7) After the bee stung the child, he screamed and cried loudly. His mother held him in her arms and sang to him, and this finally soothed him enough to fall asleep.",
+    "arabic": "بعد أن لسعت النحلة الطفل، صرخ وبكى بصوت عال. أمسكته أمه بين ذراعيها وغنت له، وهذا هدّأه وسكنه أخيراً بما يكفي ليغرق في النوم.",
+    "notes": "soothed هدّأ، سكّن = relieved (أراح، سكّن روعه)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "8) brave",
+    "english": "8) Firefighters are very brave when they go into burning buildings to save people.",
+    "arabic": "رجال الإطفاء شجعان جداً عندما يدخلون في الأبنية المحترقة لينقذوا الناس.",
+    "notes": "brave شجاع = fearless / not afraid of danger (لا خوف لديه / غير خائف من الخطر)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "9) smelly",
+    "english": "9) Some people enjoy a good, smelly cheese like blue cheese. Others don't like the smell and won't eat it.",
+    "arabic": "بعض الناس يستمتعون بالجبن كريه الرائحة مثل الجبن الأزرق؛ أما آخرون فلا يحبون رائحته ولا يتناولونه.",
+    "notes": "smelly كريه الرائحة = stinky / having a bad odor (نتن / ذو رائحة سيئة)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "10) useless",
+    "english": "10) He has very strong legs because he runs five miles every day, but his arms are almost useless; he can't lift anything heavy at all.",
+    "arabic": "لديه ساقان قويتان جداً لأنه يجري خمسة أميال كل يوم، لكن ذراعيه عديمتا النفع تقريباً؛ إذ لا يستطيع رفع أي شيء ثقيل على الإطلاق.",
+    "notes": "useless عديم النفع = not working well / of no use (لا يجدي نفعاً / لا فائدة منه)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "11) managed to",
+    "english": "11) It took a long time, but I finally managed to finish my degree and graduate.",
+    "arabic": "استغرق الأمر وقتاً طويلاً، لكنني أفلحت أخيراً بإنهاء درجتي الجامعية والتخرج.",
+    "notes": "managed to أفلح بـ = succeeded in doing something difficult (نجح في فعل شيء صعب)."
+  },
+  {
+    "type": "bilingual",
+    "badge": "12) realize",
+    "english": "12) I didn't realize how difficult it was to ski until I tried it.",
+    "arabic": "لم أدرك مدى صعوبة التزلج إلى أن جربته.",
+    "notes": "realize يدرك = understood / start to know something not noticed before (يفهم / يبدأ بمعرفة ما لم يلاحظه مسبقاً)."
+  },
+
+  // جدول المطابقة المعتمد
+  {
+    "type": "table",
+    "title": "حل تمرين مطابقة الكلمات بالتعاريف (Vocabulary Matching Exercise)",
+    "headers": ["الرقم والكلمة", "الرمز والتعريف بالإنكليزية", "المعنى بالعربية"],
+    "rows": [
+      ["1. Support", "g. Provide the money someone needs to live", "يعيل: يقدم المال الذي يحتاجه شخص ما ليعيش"],
+      ["2. Faint", "j. Lose consciousness", "يغمى عليه: يفقد الوعي"],
+      ["3. Grab", "a. Take something quickly and roughly", "يقبض على: يأخذ شيئاً بسرعة وخشونة"],
+      ["4. Realize", "l. Start to know something you had not noticed before", "يدرك: يبدأ بمعرفة شيء لم يلاحظه من قبل"],
+      ["5. Disgusting", "h. Strongly disliked", "مقرف: مكروه بشدة"],
+      ["6. Substance", "e. Anything one can touch", "مادة: أي شيء يستطيع المرء لمسه"],
+      ["7. Soothe", "c. Relieve, as if you were asleep", "يسكّن / يهدئ: يريح كما لو كنت نائماً"],
+      ["8. Brave", "b. Not afraid of danger", "شجاع: غير خائف من الخطر"],
+      ["9. Smelly", "i. Having a bad odor", "كريه الرائحة: له رائحة سيئة"],
+      ["10. Useless", "k. Not working well or of no use", "عديم النفع: لا يعمل جيداً أو لا فائدة منه"],
+      ["11. Manage to", "d. Succeed in doing something difficult", "يفلح في: ينجح في فعل شيء صعب"],
+      ["12. Beat", "f. Hit repeatedly", "يضرب: يضرب تكراراً"]
+    ]
+  },
+
+  // ===========================================================================
+  // القسم الثاني: الفروق الدقيقة بين المترادفات (SYNONYMS & NUANCES)
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Focus on Vocabulary التركيز على المفردات: المترادفات وأزواج الجمل",
+    "badge": "Synonyms"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "مفهوم المترادفات (Synonyms)",
+    "content": "The pairs of words are called synonyms because they have a similar meaning. A synonym might also give a more specific or precise meaning of a word. For example, knocking on the door is more specific than hitting the door.\n(تدعى أزواج الكلمات هذه بالمترادفات لأن لها معنى مشابهاً. وقد يعطي المرادف معنى أكثر تحديداً ودقة؛ مثلاً knocking 'يقرع' أكثر تحديداً من hitting 'يضرب')."
+  },
+  {
+    "type": "table",
+    "title": "أزواج الجمل الثمانية من نص رواية التحول وتحديد الفوارق الدقيقة",
+    "headers": ["رقم الزوج", "الجملة (a)", "الجملة (b)", "الفارق الدقيق في المعنى"],
+    "rows": [
+      ["1", "He began to think about his job.", "He started to think about his job.", "began و started كلاهما بمعنى بدأ."],
+      ["2", "He hated his job...", "He hated his work...", "job تعني الوظيفة المحددة، و work تعني العمل والجهد ككل."],
+      ["3", "...realized he was an insect.", "...understood he was an insect.", "realized تعني استوعب حقيقة جديدة، و understood فهم المغزى."],
+      ["4", "Surely, as soon as he got out of bed...", "Certainly, as soon as he got out of bed...", "كلاهما للتأكيد، مع إضفاء مسحة أمل في surely."],
+      ["5", "...heard a knock at the door.", "...heard a tap at the door.", "knock قرعة قوية، و tap نقرة خفيفة."],
+      ["6", "The manager did not understand a word.", "The manager did not comprehend a word.", "comprehend أكثر رسمية وعمقاً للاستيعاب من understand."],
+      ["7", "...and his father wept.", "...and his father cried.", "weep بكاء صامت ممض، و cry بكاء مسموع بصوت."],
+      ["8", "It tasted terrible...", "It tasted awful...", "كلاهما يدل على الطعم الكريه والبغيض."],
+      ["9", "...smelly cheese...", "...stinky cheese...", "stinky أشد نتانة وقوة في الرائحة من smelly."],
+      ["10", "...one apple pierced his body.", "...one apple entered his body.", "pierced تعني اخترقت وثقبت بألم، بينما entered مجرد دخول."]
+    ]
+  },
+
+  // ===========================================================================
+  // القسم الثالث: حل أحجية الكلمات المتقاطعة (CROSSWORD VOCABULARY)
+  // ===========================================================================
+  {
+    "type": "h2",
+    "prefix": "2.",
+    "text": "Crossword Vocabulary تمرين سياق المفردات في الجمل"
+  },
+  {
+    "type": "qa",
+    "question": "2. I think that people who are not afraid of snakes are very ......... (Across 2)\n(أعتقد أن الأشخاص الذين لا يخافون من الأفاعي هم أشخاص .........)",
+    "answer": "brave (شجعان وجريئون)."
+  },
+  {
+    "type": "qa",
+    "question": "4. It was difficult, but she ......... finish her research paper on time. (Across 4)\n(كان الأمر شاقاً، لكنها ......... إنهاء بحثها في الوقت المحدد)",
+    "answer": "managed to (أفلحت في / نجحت في)."
+  },
+  {
+    "type": "qa",
+    "question": "6. The baby was ......... by the soft music. (Across 6)\n(هدأ الطفل وسكن بفضل الموسيقى الهادئة)",
+    "answer": "soothed (هدّأ وسكّن روعه)."
+  },
+  {
+    "type": "qa",
+    "question": "9. A caterpillar changing into a butterfly is one stage in the process of ......... (Across 9)\n(تحول اليرقة إلى فراشة مرحلة من مراحل عملية .........)",
+    "answer": "metamorphosis (التحول والمسخ الشكلي)."
+  },
+  {
+    "type": "qa",
+    "question": "10. Hurry up! ......... your coat and let's go. (Across 10)\n(أسرع! ......... معطفك ولننطلق فوراً)",
+    "answer": "Grab (التقط وتناول بسرعة)."
+  },
+  {
+    "type": "qa",
+    "question": "1. They ......... when they saw all the cockroaches on the floor. (Down 1)\n(صرخوا بهلع حين رأوا الصراصير على الأرض)",
+    "answer": "screamed (صرخوا فزعاً)."
+  },
+  {
+    "type": "qa",
+    "question": "3. I'm going to rest on the ......... and watch TV. (Down 3)\n(سأرتاح وأستلقي على ......... وأشاهد التلفاز)",
+    "answer": "couch (الأريكة / الكنبة)."
+  },
+  {
+    "type": "qa",
+    "question": "5. The most disgusting insect is a ......... (Down 5)\n(أكثر الحشرات إثارة للاشمئزاز والقرف هي .........)",
+    "answer": "cockroach (الصرصور)."
+  },
+  {
+    "type": "qa",
+    "question": "7. This old bicycle is .........; the gears are broken. (Down 7)\n(هذه الدراجة القديمة ......... لأن تروسها مكسورة)",
+    "answer": "useless (عديمة الفائدة والنفع)."
+  },
+  {
+    "type": "qa",
+    "question": "8. The musician in the marching band ......... the drum loudly. (Down 8)\n(عازف الفرقة الموسيقية ......... على الطبل بصوت هادر)",
+    "answer": "beat (ضرب وقرع بقوة)."
+  },
+
+  // ===========================================================================
+  // القسم الرابع: مهارات إعادة الصياغة (PARAPHRASING)
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Focus on Writing: Paraphrasing التركيز على الكتابة: أسلوب إعادة الصياغة",
+    "badge": "Writing"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "قاعدة إعادة الصياغة (Paraphrasing Rule)",
+    "content": "To paraphrase a sentence means to say it in a different way, using your own words. The meaning of the original sentence doesn't change, but the words do.\n(إعادة صياغة الجملة يعني قولها بطريقة مختلفة باستخدام كلماتك الخاصة دون تغيير المعنى الأصلي)."
+  },
+  {
+    "type": "table",
+    "title": "أمثلة المنهاج النموذجية على إعادة الصياغة (Paraphrasing Models)",
+    "headers": ["الجملة الأصلية (Original)", "إعادة الصياغة (Paraphrase)", "الترجمة والتوضيح"],
+    "rows": [
+      ["I hate my job.", "I don't like my job / my work.", "أكره عملي -> لا أحب عملي."],
+      ["It was his manager who had come to see why he was late.", "It was his boss who had come to find out why he was late.", "كان مديره الذي جاء ليرى -> كان رب عمله الذي جاء ليكتشف."],
+      ["Lately, your work has not been very good.", "Recently, your work has been bad.", "مؤخراً لم يكن عملك جيداً جداً -> حديثاً كان عملك سيئاً."]
+    ]
+  },
+  {
+    "type": "table",
+    "title": "تمرين إعادة الصياغة 1 و 2 (Paraphrase Exercises 1 & 2)",
+    "headers": ["الرقم", "الجملة الأصلية", "إعادة الصياغة المعتمدة", "المعنى بالعربية"],
+    "rows": [
+      ["1", "I was sick, but now I feel much better.", "I was sick, but now I feel fine.", "كنت مريضاً لكني الآن أشعر أني بخير."],
+      ["2", "The manager began to back out of the room to leave.", "The boss started to back out of the room to leave.", "بدأ رب العمل يتراجع خارجاً من الغرفة ليرحل."],
+      ["3", "When he tasted it, it tasted terrible...", "When he tried it, it tasted awful...", "عندما جربه بدا طعمه بغيضاً وأشاح مشمئزاً."],
+      ["4", "...she was the only one brave enough to come into the room.", "...she was the only one brave enough to enter the room.", "كانت الوحيدة الشجاعة بما يكفي لتدخل الغرفة."],
+      ["5", "His mother ran to his father to beg him not to kill Gregor.", "His mother ran to his father to ask him not to kill Gregor.", "هرعت أمه لتطلب من أبيه ألا يقتل غريغور."],
+      ["6", "Yes, Mother. I'm getting up now.", "Yes mum, I'm getting out of bed now.", "أجل يا أمي، إني أخرج من السرير الآن."],
+      ["7", "...because his father no longer worked.", "...because his father didn't go to work any more.", "لأن والده لم يعد يذهب للعمل."],
+      ["8", "The manager and family did not understand a single word.", "The boss and family did not comprehend any word.", "لم يستوعب رب العمل والأسرة أي كلمة مما قاله."],
+      ["9", "This cannot go on.", "We should think of how to remove him.", "هذا لا يمكن أن يستمر / ينبغي أن نفكر بكيفية إبعاده."],
+      ["10", "Again his mother screamed, while the manager disappeared.", "Again his mother yelled, while the manager quickly left.", "صرخت أمه مجدداً بينما غادر المدير مسرعاً."]
+    ]
+  },
+
+  // ===========================================================================
+  // القسم الخامس: القواعد: مصادر الغاية (INFINITIVES OF PURPOSE)
+  // ===========================================================================
+  {
+    "type": "h1",
+    "text": "Grammar: Infinitives of Purpose القواعد: مصادر الغاية",
+    "badge": "Grammar"
+  },
+  {
+    "type": "callout",
+    "variant": "info",
+    "title": "قاعدة مصادر الغاية (Infinitives of Purpose)",
+    "content": "Infinitives that are used to explain the purpose of an action are called infinitives of purpose. They answer the question 'Why?':\n• to + verb: Gregor worked to support his family.\n• in order to + verb: Gregor worked in order to support his family.\n(تستخدم مصادر الغاية لتوضيح الغرض والهدف من الفعل وتجيب دائماً على السؤال 'لماذا؟')."
+  },
+  {
+    "type": "h2",
+    "prefix": "3.",
+    "text": "تمرين مطابقة أسئلة الغاية وإجاباتها من قصة كافكا (Kafka Q&A Match Exercise)"
+  },
+  {
+    "type": "qa",
+    "question": "1. Why did Gregor's manager come to his house?\n(لماذا جاء مدير غريغور إلى منزله؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 3
+  },
+  {
+    "type": "qa",
+    "question": "2. Why was Gregor locked in his room?\n(لماذا احتُجز غريغور حبيساً في غرفته؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 5
+  },
+  {
+    "type": "qa",
+    "question": "3. Why did his father grab a walking stick and newspaper?\n(لماذا أمسك والده بعصا المشي والصحيفة؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 6
+  },
+  {
+    "type": "qa",
+    "question": "4. Why did Grete go into Gregor's room every day?\n(لماذا كانت أخته غريت تدخل غرفته يومياً؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 0
+  },
+  {
+    "type": "qa",
+    "question": "5. Why did Gregor follow Grete into the dining room?\n(لماذا تبع غريغور أخته إلى غرفة الطعام؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 1
+  },
+  {
+    "type": "qa",
+    "question": "6. Why did Gregor come out of his room?\n(لماذا خرج غريغور من عزلته وغرفته؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 2
+  },
+  {
+    "type": "qa",
+    "question": "7. Why did his family take a train ride at the end?\n(لماذا ذهبت العائلة في نزهة بالقطار في نهاية القصة؟)",
+    "options": matchingOptions,
+    "correctOptionIndex": 4
+  }
+];
+
+const docLecture4 = {
+  "$schema": "./schema.json",
+  "meta": {
+    "department": "جميع أقسام كلية التربية",
+    "year": "السنة الأولى",
+    "semester": "الفصل الأول",
+    "subject": "إنكليزي (1)",
+    "subjectType": "نظري",
+    "lecture": "المحاضرة 4: التحول",
+    "academicYear": "2024 - 2025"
+  },
+  "theme": {
+    "branchId": "ershad",
+    "showWatermark": true,
+    "fontSize": "13px",
+    "lineHeight": 1.3
+  },
+  "elements": elements
+};
+
+const outputPath = path.resolve(__dirname, 'data-lecture-4.json');
+fs.writeFileSync(outputPath, JSON.stringify(docLecture4, null, 2), 'utf8');
+console.log(`Successfully generated VERBATIM data-lecture-4.json with ${elements.length} elements!`);

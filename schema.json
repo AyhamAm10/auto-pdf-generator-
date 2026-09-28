@@ -69,7 +69,7 @@
           "enum": [
             "h1", "h2", "h3", "p", "line", "list",
             "callout", "box", "table", "definitions",
-            "qa", "quote", "image", "summary", "section"
+            "qa", "quote", "image", "summary", "section", "bilingual"
           ]
         }
       }

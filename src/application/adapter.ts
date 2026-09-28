@@ -201,6 +201,15 @@ function convertElement(el: LegacyElement): ContentBlock | null {
       }
       return null;
 
+    case 'bilingual':
+      return {
+        type: 'bilingual',
+        english: el.english || el.en || '',
+        arabic: el.arabic || el.ar || '',
+        badge: el.badge,
+        notes: el.notes,
+      };
+
     default:
       console.warn(`[Adapter] Unknown legacy element type: ${el.type}`);
       return null;

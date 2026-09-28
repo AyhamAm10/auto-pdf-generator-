@@ -201,6 +201,18 @@ export interface DividerBlock {
   icon?: string;
 }
 
+export interface BilingualBlock {
+  type: 'bilingual';
+  /** Original English text / paragraph */
+  english: string;
+  /** Accurate Arabic translation */
+  arabic: string;
+  /** Optional badge label (e.g., "الفقرة 1" or "Reading 1") */
+  badge?: string;
+  /** Optional explanatory notes or key vocabulary highlights */
+  notes?: string;
+}
+
 // ---------------------------------------------------------------------------
 // Union of all content block types
 // ---------------------------------------------------------------------------
@@ -216,7 +228,8 @@ export type ContentBlock =
   | QuoteBlock
   | ImageBlock
   | SummaryBlock
-  | DividerBlock;
+  | DividerBlock
+  | BilingualBlock;
 
 // ---------------------------------------------------------------------------
 // Section — a logical content grouping
