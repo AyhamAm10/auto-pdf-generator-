@@ -50,6 +50,9 @@ export interface CourseInfo {
   /** اسم دكتور المادة (اختياري) */
   doctor?: string;
 
+  /** اسم دكتور المادة (بديل) */
+  professor?: string;
+
   /** العام الجامعي (اختياري، مثال: "2025 - 2026") */
   academicYear?: string;
 
@@ -191,7 +194,7 @@ export interface SummaryBlock {
   takeaways: string[];
 }
 
-export type DividerStyle = 'solid' | 'dashed' | 'dotted' | 'gradient' | 'with-icon';
+export type DividerStyle = 'solid' | 'dashed' | 'dotted' | 'gradient' | 'with-icon' | 'page-break';
 
 export interface DividerBlock {
   type: 'divider';

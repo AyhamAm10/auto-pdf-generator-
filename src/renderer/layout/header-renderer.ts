@@ -17,11 +17,13 @@ import { escapeHtml } from '../utils';
  * This header appears ONLY on the first page.
  */
 export function renderHeader(course: CourseInfo, theme: ResolvedTheme, totalPages: number): string {
+  const rawDoctor = course.doctor || course.professor || 'قضيب البان';
+  const doctorName = (rawDoctor.startsWith('د.') || rawDoctor.startsWith('د/'))
+    ? rawDoctor
+    : `د. ${rawDoctor}`;
+
   return `
     <header class="lecture-header">
-      <!-- الزاوية المائلة في أعلى اليسار -->
-      <div class="header-corner-notch"></div>
-
       <!-- محتوى الترويسة: الشعار + 3 أعمدة بيانات -->
       <div class="header-inner">
         <!-- أقصى اليمين: شعار المركز الرسمي -->
@@ -45,7 +47,7 @@ export function renderHeader(course: CourseInfo, theme: ResolvedTheme, totalPage
           </div>
         </div>
 
-        <!-- العمود 2: المادة - طبيعة المادة -->
+        <!-- العمود 2: المادة - طبيعة المادة - الدكتور -->
         <div class="header-meta-col col-2">
           <div class="meta-row">
             <span class="meta-label">المادة:</span>
@@ -53,24 +55,34 @@ export function renderHeader(course: CourseInfo, theme: ResolvedTheme, totalPage
           </div>
           <div class="meta-row">
             <span class="meta-label">طبيعة المادة:</span>
-            <span class="meta-value">${escapeHtml(course.subjectType)}</span>
+            <span class="meta-value subject-type-badge">${escapeHtml(course.subjectType || 'مؤتمتة')}</span>
+          </div>
+          <div class="meta-row meta-doctor-row">
+            <span class="meta-label">الدكتور:</span>
+            <span class="meta-value meta-doctor-val">${escapeHtml(doctorName)}</span>
           </div>
         </div>
 
-        <!-- العمود 3: محاضرة - عدد الصفحات -->
+        <!-- العمود 3: محاضرة - عدد الصفحات - العام الجامعي -->
         <div class="header-meta-col col-3">
           <div class="meta-row">
             <span class="meta-label">محاضرة:</span>
-            <span class="meta-value">${escapeHtml(course.lecture)}</span>
+            <span class="meta-value meta-lecture">${escapeHtml(course.lecture)}</span>
           </div>
           <div class="meta-row">
             <span class="meta-label">عدد الصفحات:</span>
             <span class="meta-value page-count-val">${escapeHtml(String(totalPages || course.totalPages || 0))}</span>
           </div>
+          ${course.academicYear ? `
+          <div class="meta-row">
+            <span class="meta-label">العام الجامعي:</span>
+            <span class="meta-value">${escapeHtml(course.academicYear)}</span>
+          </div>
+          ` : ''}
         </div>
       </div>
 
-      <!-- الفاصل السفلي للترويسة بتصميم انسيابي -->
+      <!-- الفاصل السفلي للترويسة بتصميم انسيابي وألوان قوية وواضحة للطباعة -->
       <div class="header-bottom-divider"></div>
     </header>
   `;

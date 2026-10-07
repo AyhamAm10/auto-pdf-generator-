@@ -11,18 +11,18 @@ export const ershadTheme: ThemeDefinition = {
   id: 'ershad',
 
   colors: {
-    primary: '#1B365D',     // أزرق داكن ملكي
-    secondary: '#0284C7',   // أزرق سماوي حيوي
-    accent: '#DC2626',      // أحمر للأرقام والتنبيهات
+    primary: '#005BB5',     // أزرق ملكي حيوي وواضح للطباعة
+    secondary: '#008A3E',   // أخضر حيوي للعناوين الفرعية والنقاط
+    accent: '#DC2626',      // أحمر قوي للتنبيهات والملاحظات
     lightBg: '#F0F7FF',
-    border: '#BAE6FD',
-    heading: '#1B365D',
+    border: '#93C5FD',
+    heading: '#005BB5',
   },
 
   typography: {
-    fontFamily: "'IBM Plex Sans Arabic', 'Readex Pro', 'Cairo', sans-serif",
-    fontSize: '13.5px',
-    lineHeight: 1.36,
+    fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
+    fontSize: '16px',
+    lineHeight: 1.5,
   },
 
   assets: {

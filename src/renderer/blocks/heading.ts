@@ -21,16 +21,11 @@ function renderH1(block: HeadingBlock): string {
   const badgeHtml = block.badge
     ? `<span class="h1-badge">${escapeHtml(block.badge)}</span>`
     : '';
-  const iconHtml = block.icon
-    ? `<span class="h1-icon">${block.icon}</span>`
-    : '';
 
   return `
     <div class="element-h1-container">
-      <div class="h1-line-accent"></div>
-      <div class="h1-content">
-        ${iconHtml}
-        ${badgeHtml}
+      <div class="h1-centered-content">
+        ${badgeHtml ? `<div class="h1-badge-wrap">${badgeHtml}</div>` : ''}
         <h1 class="h1-title">${escapeHtml(block.text)}</h1>
       </div>
     </div>
@@ -40,7 +35,7 @@ function renderH1(block: HeadingBlock): string {
 function renderH2(block: HeadingBlock): string {
   const prefixHtml = block.prefix
     ? `<span class="h2-prefix">${escapeHtml(block.prefix)}</span>`
-    : `<span class="h2-dot"></span>`;
+    : '';
 
   return `
     <div class="element-h2-container">

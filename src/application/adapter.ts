@@ -55,22 +55,27 @@ interface LegacyElement {
  */
 function mapBranchToTheme(branchId?: string, department?: string): ThemeVariant {
   const id = (branchId || '').toLowerCase();
+
+  // If explicit branchId is provided, respect it directly
+  if (id === 'ershad' || id === 'blue') return 'ershad';
+  if (id === 'moallem' || id === 'green') return 'moallem';
+  if (id === 'manahij' || id === 'red' || id === 'teqniyat') return 'manahij';
+  if (id === 'purple' || id === 'atfal') return 'purple';
+
   const dept = (department || '').toLowerCase();
 
   // Green theme
-  if (id === 'moallem' || id === 'green' || dept.includes('معلم') || dept.includes('صف')) {
+  if (dept.includes('معلم') || dept.includes('صف')) {
     return 'moallem';
   }
 
   // Red theme
-  if (id === 'manahij' || id === 'teqniyat' || id === 'red' ||
-      dept.includes('مناهج') || dept.includes('تقنيات') || dept.includes('إدارة')) {
+  if (dept.includes('مناهج') || dept.includes('تقنيات') || dept.includes('إدارة')) {
     return 'manahij';
   }
 
   // Purple theme
-  if (id === 'purple' || id === 'atfal' ||
-      dept.includes('طفول') || dept.includes('أطفال') || dept.includes('خاصة')) {
+  if (dept.includes('طفول') || dept.includes('أطفال') || dept.includes('خاصة')) {
     return 'purple';
   }
 
@@ -117,10 +122,16 @@ function convertElement(el: LegacyElement): ContentBlock | null {
         highlight: el.highlight,
       };
 
+    case 'page-break':
+      return {
+        type: 'divider',
+        style: 'page-break',
+      };
+
     case 'line':
       return {
         type: 'divider',
-        style: el.style || 'solid',
+        style: (el.style as any) || 'solid',
         icon: el.icon,
       };
 
@@ -158,6 +169,7 @@ function convertElement(el: LegacyElement): ContentBlock | null {
       };
 
     case 'qa':
+    case 'question':
       return {
         type: 'question',
         question: el.question || '',
@@ -322,9 +334,10 @@ export function adaptLegacyDocument(legacy: any): DocumentData {
       year: meta.year || 'السنة الدراسية',
       semester: meta.semester || 'الفصل الأول',
       subject: meta.subject || 'المادة الأكاديمية',
-      subjectType: meta.subjectType || 'نظري',
+      subjectType: meta.subjectType || 'مؤتمتة',
       lecture: meta.lecture || '1',
-      doctor: meta.professor,
+      doctor: (meta as any).doctor || meta.professor || 'قضيب البان',
+      professor: meta.professor || (meta as any).doctor || 'قضيب البان',
       academicYear: meta.academicYear,
       totalPages: meta.totalPages ? Number(meta.totalPages) : undefined,
     },
@@ -336,7 +349,9 @@ export function adaptLegacyDocument(legacy: any): DocumentData {
       primaryColor: doc.theme.primaryColor,
       secondaryColor: doc.theme.secondaryColor,
       fontSize: doc.theme.fontSize,
-      lineHeight: typeof doc.theme.lineHeight === 'number' ? doc.theme.lineHeight : undefined,
-    } : undefined,
+      lineHeight: typeof doc.theme.lineHeight === 'number' ? doc.theme.lineHeight : 1.5,
+    } : {
+      lineHeight: 1.5,
+    },
   };
 }

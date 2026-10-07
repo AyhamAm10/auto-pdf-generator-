@@ -14,19 +14,19 @@ export function buildWatermarkCss(): string {
     /* ------------------------------------------------------------- */
     .watermark-overlay {
       position: fixed;
-      top: 48%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 78%;
-      max-width: 580px;
+      width: 52%;
+      max-width: 380px;
       height: auto;
-      max-height: 65vh;
+      max-height: 50vh;
       display: flex;
       align-items: center;
       justify-content: center;
       pointer-events: none;
       z-index: 1;
-      opacity: 0.25;
+      opacity: 0.20;
     }
 
     .watermark-img {

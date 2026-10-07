@@ -11,35 +11,27 @@
 export function buildHeaderCss(): string {
   return `
     /* ------------------------------------------------------------- */
-    /* الترويسة العلوية — الصفحة الأولى فقط                           */
+    /* الترويسة العلوية الأكاديمية — الصفحة الأولى فقط                */
     /* ------------------------------------------------------------- */
     .lecture-header {
       position: relative;
       width: 100%;
       background: #FFFFFF;
-      padding: 8px 12mm 0 12mm;
+      padding: 12px 12mm 2px 12mm;
       z-index: 10;
     }
 
-    /* الزاوية المائلة في أعلى اليسار */
     .header-corner-notch {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 60px;
-      height: 24px;
-      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-      clip-path: polygon(0 0, 100% 0, 65% 100%, 0 100%);
-      opacity: 0.9;
+      display: none !important;
     }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
+      gap: 18px;
       padding-top: 4px;
-      padding-bottom: 6px;
+      padding-bottom: 8px;
     }
 
     /* الشعار الرسمي على اليمين */
@@ -48,27 +40,27 @@ export function buildHeaderCss(): string {
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-left: 5px;
+      margin-left: 8px;
     }
 
     .header-logo-img {
-      height: 62px;
-      max-width: 88px;
+      height: 78px;
+      max-width: 105px;
       object-fit: contain;
       filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.06));
     }
 
-    /* الأعمدة الثلاثة للبيانات */
+    /* الأعمدة الثلاثة للبيانات الأكاديمية */
     .header-meta-col {
       display: flex;
       flex-direction: column;
-      gap: 3px;
-      font-size: 12.5px;
-      line-height: 1.35;
+      gap: 5px;
+      font-size: 14px;
+      line-height: 1.45;
     }
 
     .header-meta-col.col-1 {
-      flex: 1.15;
+      flex: 0.95;
     }
 
     .header-meta-col.col-2 {
@@ -76,44 +68,78 @@ export function buildHeaderCss(): string {
     }
 
     .header-meta-col.col-3 {
-      flex: 0.95;
+      flex: 1.35;
     }
 
     .meta-row {
       display: flex;
       align-items: baseline;
-      gap: 6px;
+      gap: 7px;
     }
 
     .meta-label {
-      color: #64748B;
-      font-weight: 600;
+      color: #1E3A8A;
+      font-weight: 700;
       white-space: nowrap;
-      font-size: 12.5px;
+      font-size: 14px;
     }
 
     .meta-value {
       color: var(--primary-color);
       font-weight: 700;
-      font-size: 12.5px;
+      font-size: 14px;
     }
 
     .meta-value.font-bold {
       font-weight: 800;
+      font-size: 17px;
+      color: var(--primary-color);
+      letter-spacing: 0.2px;
+    }
+
+    .subject-type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #1D4ED8;
+      background: #EFF6FF;
+      border: 1.5px solid #93C5FD;
+      box-shadow: 0 1px 2px rgba(29, 78, 216, 0.08);
+    }
+
+    .meta-doctor-row {
+      margin-top: 1px;
+    }
+
+    .meta-doctor-val {
+      color: #0284C7;
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .meta-lecture {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1E293B;
+      line-height: 1.35;
     }
 
     .page-count-val {
       color: var(--primary-color);
       font-weight: 800;
+      font-size: 14.5px;
     }
 
-    /* الفاصل السفلي للترويسة */
+    /* الفاصل السفلي للترويسة بألوان واضحة وغنية للطباعة */
     .header-bottom-divider {
       width: 100%;
-      height: 2px;
-      background: linear-gradient(to left, var(--secondary-color), var(--primary-color));
-      margin-top: 6px;
-      border-radius: 1px;
+      height: 3px;
+      background: linear-gradient(to left, var(--primary-color) 0%, var(--secondary-color) 70%, #38BDF8 100%);
+      margin-top: 8px;
+      border-radius: 2px;
     }
 
     /* شريط علوي بسيط للصفحات التالية */

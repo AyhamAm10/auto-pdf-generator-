@@ -21,6 +21,10 @@ export function renderDivider(block: DividerBlock): string {
     `;
   }
 
+  if (style === 'page-break') {
+    return `<div class="page-break" style="break-before: page; page-break-before: always; height: 0; margin: 0; padding: 0;"></div>`;
+  }
+
   if (style === 'gradient') {
     return `<div class="element-line-gradient" style="margin: 12px 0;"></div>`;
   }

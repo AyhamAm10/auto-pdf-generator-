@@ -7,12 +7,42 @@
 import { ParagraphBlock } from '../../domain/document';
 import { renderRichText } from '../utils';
 
+function highlightAcademicKeywords(text: string): string {
+  // 1. Note lead: * ملاحظة:
+  let res = text.replace(/(\*?\s*ملاحظة\s*:)/g, '<strong class="lead-note">$1</strong>');
+
+  // 2. Multi-stage: "• المرحلة الأولى:", "• المرحلة الثانية:", etc.
+  res = res.replace(/(^|<br\/>)(\s*•?\s*المرحلة\s+[^:<\n]{2,30}:)/g, '$1<strong class="lead-stage-title">$2</strong>');
+
+  // 3. Arabic letter sub-items: e.g. "• أ- المتغير الإحصائي المتقطع...:" or "أ- الشمول:"
+  res = res.replace(/(^|<br\/>)(\s*•?\s*[أ-ي][\.-]\s*[^:<\n]{2,60}:)/g, '$1<strong class="lead-letter-title">$2</strong>');
+
+  // 4. Numbered main items: e.g. "1. التعريف الأول لعلم الإحصاء:" or "• 1- بيانات وصفية...:" or "1- العينات العشوائية البسيطة...:"
+  res = res.replace(/(^|<br\/>)(\s*•?\s*\d+[\.-]\s*[^:<\n]{2,60}:)/g, '$1<strong class="lead-num-title">$2</strong>');
+
+  // 5. Short sub-items like "- النوع:", "- الحالة الاجتماعية:", "- الجنسية:"
+  res = res.replace(/(^|<br\/>)(\s*[-–]\s*[^:<\n]{2,30}:)/g, '$1<strong class="lead-subitem-title">$2</strong>');
+
+  return res;
+}
+
 export function renderParagraph(block: ParagraphBlock): string {
-  const content = renderRichText(block.text, block.html);
-  const highlightClass = block.highlight ? 'p-highlighted' : '';
+  let content = renderRichText(block.text, block.html);
+  const textStr = block.text || '';
+  const isIntro = textStr.startsWith('مدخل تمهيدي:') || textStr.startsWith('تمهيد:') || textStr.startsWith('مقدمة:');
+
+  const classes = ['element-p'];
+  if (block.highlight) {
+    classes.push('p-highlighted');
+  } else if (isIntro) {
+    classes.push('p-intro');
+    content = content.replace(/^(مدخل تمهيدي:|تمهيد:|مقدمة:)/, '<span class="intro-prefix-badge">$1</span>');
+  } else {
+    content = highlightAcademicKeywords(content);
+  }
 
   return `
-    <p class="element-p ${highlightClass}">
+    <p class="${classes.join(' ')}">
       ${content}
     </p>
   `;

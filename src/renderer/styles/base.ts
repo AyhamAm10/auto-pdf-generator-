@@ -13,15 +13,15 @@ export function buildBaseCss(): string {
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap');
 
     :root {
-      --primary-color: var(--theme-primary);
-      --secondary-color: var(--theme-secondary);
-      --accent-color: var(--theme-accent);
-      --light-bg: var(--theme-light-bg);
-      --border-color: var(--theme-border);
-      --heading-color: var(--theme-heading);
-      --font-family: var(--theme-font-family);
-      --base-font-size: var(--theme-font-size);
-      --base-line-height: var(--theme-line-height);
+      --primary-color: var(--theme-primary, #1B365D);
+      --secondary-color: var(--theme-secondary, #0284C7);
+      --accent-color: var(--theme-accent, #DC2626);
+      --light-bg: var(--theme-light-bg, #F0F7FF);
+      --border-color: var(--theme-border, #CBD5E1);
+      --heading-color: var(--theme-heading, #1B365D);
+      --font-family: var(--theme-font-family, 'Simplified Arabic', Arial, Tahoma, sans-serif);
+      --base-font-size: var(--theme-font-size, 16px);
+      --base-line-height: var(--theme-line-height, 1.5);
     }
 
     @page {

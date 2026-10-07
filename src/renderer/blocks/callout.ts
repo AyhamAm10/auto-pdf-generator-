@@ -7,13 +7,13 @@
 import { CalloutBlock } from '../../domain/document';
 import { escapeHtml, renderRichText } from '../utils';
 
-/** Default icons and titles for each callout variant */
+/** Default icons and titles for each callout variant (academic styling) */
 const CALLOUT_DEFAULTS: Record<string, { icon: string; title: string }> = {
-  note:       { icon: '📌', title: 'ملاحظة' },
-  important:  { icon: '⚠️', title: 'تنبيه أكاديمي هام' },
-  exam_tip:   { icon: '⭐', title: 'فكرة امتحانية / سؤال دورات' },
-  definition: { icon: '📖', title: 'تعريف ومفهوم اصطلاحي' },
-  info:       { icon: '💡', title: 'إضاءة علمية إثرائية' },
+  note:       { icon: '■', title: 'ملاحظة' },
+  important:  { icon: '◆', title: 'تنبيه أكاديمي هام' },
+  exam_tip:   { icon: '★', title: 'فكرة امتحانية / سؤال دورات' },
+  definition: { icon: '◄', title: 'تعريف ومفهوم اصطلاحي' },
+  info:       { icon: '✦', title: 'إضاءة علمية' },
 };
 
 export function renderCallout(block: CalloutBlock): string {

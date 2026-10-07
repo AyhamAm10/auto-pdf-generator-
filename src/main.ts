@@ -22,7 +22,6 @@ async function main(): Promise<void> {
     : path.join(__dirname, '..', 'sample-data.json');
   const inputPath = args[0] ? path.resolve(process.cwd(), args[0]) : defaultDataFile;
   const outputDir = path.join(__dirname, '..', 'output');
-  const outputPdf = args[1] ? path.resolve(process.cwd(), args[1]) : path.join(outputDir, 'lecture.pdf');
   const previewDir = path.join(outputDir);
 
   // Assets directory (self-contained in v2)
@@ -57,6 +56,12 @@ async function main(): Promise<void> {
   console.log(`   ✓ المادة: ${doc.course.subject}`);
   console.log(`   ✓ المحاضرة: ${doc.course.lecture}`);
   console.log(`   ✓ الأقسام: ${doc.sections.length}`);
+
+  // Dynamic lecture-based output PDF name
+  const sanitizedSubject = (doc.course.subject || 'مادة').trim().replace(/[/\\?%*:|"<>]/g, '-');
+  const sanitizedLecture = (doc.course.lecture || 'محاضرة').trim().replace(/[/\\?%*:|"<>]/g, '-');
+  const dynamicFileName = `${sanitizedSubject} - ${sanitizedLecture}.pdf`;
+  const outputPdf = args[1] ? path.resolve(process.cwd(), args[1]) : path.join(outputDir, dynamicFileName);
 
   // Step 3: Determine total pages & resolve theme
   console.log('🎨 تجهيز القالب والترويسة...');

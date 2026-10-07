@@ -20,9 +20,9 @@ export const moallemTheme: ThemeDefinition = {
   },
 
   typography: {
-    fontFamily: "'IBM Plex Sans Arabic', 'Readex Pro', 'Cairo', sans-serif",
-    fontSize: '13.5px',
-    lineHeight: 1.36,
+    fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
+    fontSize: '16px',
+    lineHeight: 1.5,
   },
 
   assets: {

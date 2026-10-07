@@ -3,29 +3,29 @@
  * Renderer Styles — Content Block CSS
  * ==============================================================================
  * 
- * All styles for content blocks (headings, paragraphs, lists, callouts, etc.)
- * Exact reproduction of the existing visual design.
+ * Print-friendly academic styles modeled after university lecture handouts
+ * (like "ذهبية مكتبة مدرسية.pdf").
+ * Clean typography, vibrant print colors (Royal Blue + Emerald Green + Crimson Red),
+ * line-height 1.5, static layout without excessive web cards.
  * ==============================================================================
  */
 
 export function buildBlocksCss(): string {
   return `
     /* ------------------------------------------------------------- */
-    /* منطقة المحتوى الداخلي                                         */
+    /* منطقة المحتوى الداخلية                                         */
     /* ------------------------------------------------------------- */
     .page-content-area {
       position: relative;
       z-index: 5;
-      padding: 8px 12mm 6px 12mm;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      padding: 4px 12mm 4px 12mm;
+      display: block;
       font-size: var(--base-font-size);
       line-height: var(--base-line-height);
     }
 
     .content-first-page {
-      /* No extra padding needed — header provides spacing */
+      /* Spacing handled by header */
     }
 
     .content-subsequent-page {
@@ -33,114 +33,162 @@ export function buildBlocksCss(): string {
     }
 
     /* ------------------------------------------------------------- */
-    /* عناصر العنوان H1                                               */
+    /* عناصر العنوان H1 (العنوان الأساسي الرئيسي للمحاضرة)            */
     /* ------------------------------------------------------------- */
     .element-h1-container {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      margin: 6px 0 6px 0;
-      border-bottom: 1.5px solid #E2E8F0;
-      padding-bottom: 5px;
+      justify-content: center;
+      text-align: center;
+      margin: 8px 0 6px 0;
+      padding: 7px 0 8px 0;
+      border-bottom: 2px solid var(--primary-color);
+      border-top: 2px solid var(--primary-color);
       break-after: avoid;
+      page-break-after: avoid;
     }
 
-    .h1-line-accent {
-      width: 5px;
-      height: 22px;
-      background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-      border-radius: 3px;
-      flex-shrink: 0;
-    }
-
-    .h1-content {
+    .h1-centered-content {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3px;
+      width: 100%;
     }
 
     .h1-title {
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 18px;
+      font-weight: 800;
       color: var(--primary-color);
-      line-height: 1.3;
+      line-height: 1.4;
+      text-align: center;
+      margin: 0;
     }
 
     .h1-badge {
-      background-color: #F1F5F9;
+      display: inline-block;
       color: var(--primary-color);
-      border: 1px solid #E2E8F0;
-      padding: 2px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 2px;
     }
 
     /* ------------------------------------------------------------- */
-    /* عناوين H2                                                     */
+    /* عناوين H2 الأكاديمية الرئيسية (أولاً: ، ثانياً: ...)            */
     /* ------------------------------------------------------------- */
     .element-h2-container {
       display: flex;
       align-items: center;
       gap: 7px;
-      margin: 5px 0 3px 0;
+      margin: 12px 0 5px 0;
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid var(--primary-color);
       break-after: avoid;
-    }
-
-    .h2-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background-color: var(--secondary-color);
-      flex-shrink: 0;
+      page-break-after: avoid;
     }
 
     .h2-prefix {
-      color: var(--secondary-color);
-      font-weight: 700;
-      font-size: 14px;
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 18px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
     }
 
     .h2-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--heading-color);
-      line-height: 1.3;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary-color);
+      line-height: 1.4;
     }
 
     /* ------------------------------------------------------------- */
-    /* عناوين H3                                                     */
+    /* عناوين H3 الأكاديمية الفرعية — لون أخضر حيوي بارز ونظيف        */
     /* ------------------------------------------------------------- */
     .element-h3-container {
-      margin: 4px 0 2px 0;
+      margin: 9px 0 3px 0;
       break-after: avoid;
+      page-break-after: avoid;
     }
 
     .h3-title {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #334155;
-      line-height: 1.3;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--secondary-color);
+      line-height: 1.4;
     }
 
     /* ------------------------------------------------------------- */
-    /* الفقرات P                                                     */
+    /* الفقرات P الأكاديمية                                          */
     /* ------------------------------------------------------------- */
     .element-p {
-      font-size: var(--base-font-size);
+      font-size: var(--base-font-size, 16px);
       line-height: var(--base-line-height);
-      color: #1E293B;
+      color: #111827;
       text-align: justify;
       text-justify: inter-word;
-      margin: 0;
+      margin: 3.5px 0;
+    }
+
+    /* تمييز العناصر والعناوين الفرعية داخل الفقرات بألوان طباعية حيوية */
+    .lead-num-title {
+      color: var(--secondary-color);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .lead-letter-title {
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .lead-stage-title {
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .lead-subitem-title {
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .lead-note {
+      color: var(--accent-color);
+      font-weight: 800;
+      font-size: 16px;
     }
 
     .p-highlighted {
-      background: rgba(240, 247, 255, 0.85);
-      padding: 6px 10px;
-      border-radius: 6px;
-      border-right: 3px solid var(--secondary-color);
+      border-right: 3.5px solid #D97706;
+      padding: 5px 10px;
+      color: #111827;
+      font-weight: 500;
+      background: #FFFBEB;
+    }
+
+    /* مدخل تمهيدي / مقدمة المحاضرة */
+    .p-intro {
+      border-right: 4px solid var(--primary-color);
+      padding: 8px 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #0F172A;
+      margin: 5px 0 8px 0;
+      background: #EFF6FF;
+      border-radius: 2px;
+    }
+
+    .intro-prefix-badge {
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 16.5px;
+      margin-left: 5px;
     }
 
     /* ------------------------------------------------------------- */
@@ -154,24 +202,24 @@ export function buildBlocksCss(): string {
     }
 
     .element-line-dashed {
-      border-top: 1.5px dashed #94A3B8;
+      border-top: 1px dashed #94A3B8;
       background: transparent;
     }
 
     .element-line-dotted {
-      border-top: 1.5px dotted #94A3B8;
+      border-top: 1px dotted #94A3B8;
       background: transparent;
     }
 
     .element-line-gradient {
-      height: 2px;
-      background: linear-gradient(to left, transparent, var(--secondary-color), transparent);
+      height: 1.5px;
+      background: linear-gradient(to left, var(--primary-color), var(--secondary-color), transparent);
     }
 
     .element-line-icon-wrapper {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       width: 100%;
     }
 
@@ -182,7 +230,7 @@ export function buildBlocksCss(): string {
     }
 
     .line-icon-badge {
-      color: var(--secondary-color);
+      color: var(--primary-color);
       font-size: 11px;
     }
 
@@ -192,16 +240,16 @@ export function buildBlocksCss(): string {
     .element-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin: 3px 0;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 3px;
     }
 
     .list-item {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .list-item-content {
@@ -214,189 +262,208 @@ export function buildBlocksCss(): string {
 
     .list-bullet {
       color: var(--secondary-color);
-      font-size: 8px;
+      font-size: 12px;
       line-height: 1;
+      font-weight: 800;
     }
 
     .list-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 18px;
-      height: 18px;
-      background: var(--light-bg);
+      display: inline-block;
+      min-width: 22px;
       color: var(--primary-color);
-      border: 1px solid var(--border-color);
-      border-radius: 50%;
-      font-size: 11px;
-      font-weight: 700;
+      font-size: 14.5px;
+      font-weight: 800;
       flex-shrink: 0;
+      text-align: right;
     }
 
     .list-check {
-      color: #059669;
-      font-weight: bold;
+      color: var(--secondary-color);
+      font-weight: 800;
       font-size: 13px;
     }
 
     .list-alpha {
-      font-weight: 700;
-      color: var(--secondary-color);
+      font-weight: 800;
+      color: var(--primary-color);
     }
 
     .sub-list {
       list-style: circle;
-      padding-right: 22px;
+      padding-right: 20px;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
       font-size: 13px;
-      color: #475569;
+      color: #333333;
       margin-top: 2px;
     }
 
     /* ------------------------------------------------------------- */
-    /* صناديق التنبيه Callout                                         */
+    /* صناديق التنبيه الأكاديمية — تصميم ورقي بستاتيك بسيط           */
     /* ------------------------------------------------------------- */
     .element-callout {
-      border-radius: 8px;
-      padding: 8px 12px;
+      padding: 7px 12px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      font-size: 13px;
-      line-height: 1.36;
+      gap: 3px;
+      font-size: var(--base-font-size);
+      line-height: var(--base-line-height);
       break-inside: avoid;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      page-break-inside: avoid;
+      margin: 5px 0;
+      border-radius: 2px;
     }
 
     .callout-header {
       display: flex;
       align-items: center;
-      gap: 6px;
-      font-weight: 700;
+      gap: 7px;
+      font-weight: 800;
+      font-size: 14px;
+      padding-bottom: 2px;
+    }
+
+    .callout-icon {
       font-size: 13px;
+      line-height: 1;
     }
 
     .callout-body {
-      font-size: 13px;
-      line-height: 1.36;
-      color: #334155;
+      font-size: var(--base-font-size);
+      line-height: var(--base-line-height);
+      color: #111827;
     }
 
+    .callout-body p {
+      margin: 2px 0;
+      text-align: justify;
+    }
+
+    /* ملاحظة — أزرق */
     .callout-note {
-      background: rgba(248, 250, 252, 0.85);
-      border: 1px solid #E2E8F0;
-      border-right: 3px solid var(--secondary-color);
-      color: #1E293B;
+      background: #EFF6FF;
+      border-right: 4px solid var(--primary-color);
+      color: #111827;
     }
 
-    .callout-note .callout-title {
+    .callout-note .callout-header {
       color: var(--primary-color);
     }
 
+    /* تنبيه هام — أحمر */
     .callout-important {
-      background: rgba(254, 242, 242, 0.88);
-      border: 1px solid #FECDD3;
-      border-right: 3px solid #EF4444;
+      background: #FEF2F2;
+      border-right: 4px solid var(--accent-color);
+      color: #111827;
     }
 
-    .callout-important .callout-title {
-      color: #B91C1C;
+    .callout-important .callout-header {
+      color: var(--accent-color);
     }
 
+    /* سؤال / فكرة امتحانية — ذهبي */
     .callout-exam_tip {
-      background: rgba(255, 251, 235, 0.88);
-      border: 1px solid #FDE68A;
-      border-right: 3px solid #F59E0B;
+      background: #FFFBEB;
+      border-right: 4px solid #D97706;
+      color: #111827;
     }
 
-    .callout-exam_tip .callout-title {
+    .callout-exam_tip .callout-header {
       color: #B45309;
     }
 
+    /* تعريف ومفهوم — بنفسجي */
     .callout-definition {
-      background: rgba(248, 250, 252, 0.85);
-      border: 1px solid #E2E8F0;
-      border-right: 3px solid var(--primary-color);
+      background: #F5F3FF;
+      border-right: 4px solid #7C3AED;
+      color: #111827;
     }
 
-    .callout-definition .callout-title {
-      color: var(--primary-color);
+    .callout-definition .callout-header {
+      color: #6D28D9;
     }
 
+    /* إضاءة علمية — أخضر */
     .callout-info {
-      background: rgba(240, 247, 255, 0.85);
-      border: 1px solid var(--border-color);
-      border-right: 3px solid var(--secondary-color);
-      color: #1E293B;
+      background: #F0FDF4;
+      border-right: 4px solid var(--secondary-color);
+      color: #111827;
     }
 
-    .callout-info .callout-title {
-      color: var(--primary-color);
+    .callout-info .callout-header {
+      color: var(--secondary-color);
     }
 
     /* ------------------------------------------------------------- */
-    /* الجداول Table                                                  */
+    /* الجداول الأكاديمية — ترويسة ملونة وحدود واضحة للطباعة         */
+    /* عدم فصل عنوان الجدول عن محتواه إطلاقاً                         */
     /* ------------------------------------------------------------- */
     .element-table-wrapper {
       width: 100%;
-      margin: 4px 0;
-      border-radius: 8px;
-      border: 1px solid #E2E8F0;
-      overflow: hidden;
+      margin: 8px 0;
+      border: 1.5px solid var(--primary-color);
+      background: #FFFFFF;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .table-caption {
-      background: rgba(248, 250, 252, 0.90);
-      color: #1E293B;
-      font-weight: 700;
+      background: var(--primary-color);
+      color: #FFFFFF;
+      font-weight: 800;
       padding: 6px 12px;
-      font-size: 13px;
-      border-bottom: 1px solid #E2E8F0;
+      font-size: 13.5px;
+      text-align: center;
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .element-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 12.5px;
-      line-height: 1.34;
+      font-size: 13px;
+      line-height: 1.45;
       table-layout: auto;
+      background: #FFFFFF;
+      break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .element-table th {
       background: var(--primary-color);
-      color: #FFFFFF;
-      font-weight: 700;
-      padding: 7px 10px;
-      text-align: right;
-      border: 1px solid var(--primary-color);
+      color: #FFFFFF !important;
+      font-weight: 800;
+      padding: 6px 9px;
+      text-align: center;
+      border: 1px solid #FFFFFF;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      font-size: 13px;
     }
 
     .element-table td {
-      padding: 6px 10px;
-      border: 1px solid #E2E8F0;
-      color: #1E293B;
+      padding: 5px 9px;
+      border: 1px solid #94A3B8;
+      color: #111827;
       word-wrap: break-word;
       overflow-wrap: break-word;
       min-width: 40px;
     }
 
     .element-table tr.tr-odd {
-      background-color: rgba(250, 251, 253, 0.82);
+      background-color: #FFFFFF;
     }
 
     .element-table tr.tr-even {
-      background-color: rgba(255, 255, 255, 0.70);
+      background-color: #F0F7FF;
     }
 
     /* ------------------------------------------------------------- */
     /* المصطلحات Definitions                                          */
     /* ------------------------------------------------------------- */
     .definitions-main-title {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--primary-color);
       font-size: 14px;
       margin-bottom: 6px;
@@ -405,223 +472,200 @@ export function buildBlocksCss(): string {
     .definitions-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 9px;
+      gap: 8px;
       align-items: start;
     }
 
     .definition-card {
-      background: rgba(250, 251, 253, 0.82);
-      border: 1px solid #E2E8F0;
-      border-radius: 9px;
-      padding: 8px 11px;
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      border-right: 3.5px solid var(--secondary-color);
+      padding: 7px 10px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      gap: 3px;
       break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .def-term-badge {
-      font-weight: 700;
+      font-weight: 800;
       color: var(--primary-color);
       font-size: 13px;
     }
 
     .def-body {
       font-size: 12.5px;
-      line-height: 1.35;
-      color: #475569;
+      line-height: 1.45;
+      color: #333333;
     }
 
     .def-example {
-      margin-top: 4px;
-      background: rgba(241, 245, 249, 0.85);
-      border: 1px solid #E2E8F0;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 11.5px;
-      color: #475569;
-      line-height: 1.32;
+      margin-top: 3px;
+      background: #F8F8F8;
+      border: 1px solid #DDDDDD;
+      padding: 3px 7px;
+      font-size: 12px;
+      color: #333333;
+      line-height: 1.35;
       display: flex;
       align-items: center;
       gap: 5px;
     }
 
     .example-tag {
-      background: #ECFDF5;
-      color: #047857;
-      border: 1px solid #A7F3D0;
+      color: var(--secondary-color);
+      border: 1px solid #86EFAC;
       padding: 1px 6px;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: 10.5px;
+      font-weight: 800;
+      font-size: 11px;
       flex-shrink: 0;
     }
 
     /* ------------------------------------------------------------- */
-    /* الأسئلة والأجوبة Q&A                                           */
+    /* الأسئلة والأجوبة Q&A (المواد المؤتمتة) — تصميم ورقي أكاديمي  */
     /* ------------------------------------------------------------- */
     .element-qa-card {
-      background: rgba(250, 251, 253, 0.82);
-      border: 1px solid #E2E8F0;
-      border-radius: 9px;
-      padding: 8px 12px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+      background: #FAFAFA;
+      border: 1px solid #CBD5E1;
+      border-right: 4px solid var(--primary-color);
+      padding: 9px 12px;
       display: flex;
       flex-direction: column;
       gap: 6px;
       break-inside: avoid;
+      page-break-inside: avoid;
+      margin: 5px 0;
     }
 
     .qa-question-header {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
-      font-weight: 700;
-      font-size: 13.5px;
+      gap: 7px;
+      font-weight: 800;
+      font-size: 14px;
     }
 
     .qa-question-text {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .qa-q-line {
-      line-height: 1.4;
+      line-height: 1.5;
+      color: #0F172A;
     }
 
     .qa-badge-q {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--primary-color);
-      color: #FFFFFF;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      font-size: 12px;
+      display: inline-block;
+      color: var(--primary-color);
+      font-size: 13.5px;
       font-weight: 800;
       flex-shrink: 0;
+      min-width: 20px;
     }
 
     .qa-tag {
       margin-right: auto;
-      background: #F1F5F9;
-      color: #475569;
+      color: var(--primary-color);
       font-size: 11px;
+      font-weight: 700;
       padding: 1px 6px;
-      border-radius: 4px;
+      border: 1px solid #93C5FD;
     }
 
     .qa-options-list {
       display: flex;
       flex-direction: column;
       gap: 4px;
-      padding-right: 24px;
+      padding-right: 22px;
     }
 
     .qa-option-item {
       display: flex;
       align-items: flex-start;
-      gap: 8px;
+      gap: 7px;
       font-size: 13px;
-      padding: 6px 10px;
-      border-radius: 6px;
+      padding: 4px 8px;
       border: 1px solid #E2E8F0;
       background: #FFFFFF;
-      color: #334155;
-      margin-bottom: 2px;
-      transition: all 0.2s ease;
+      color: #333333;
+      margin-bottom: 1px;
     }
 
     .option-correct {
       background: #F0FDF4 !important;
       color: #065F46 !important;
-      font-weight: 600;
-      border: 1.5px solid #10B981 !important;
+      font-weight: 700;
+      border: 1.5px solid var(--secondary-color) !important;
     }
 
     .option-marker {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #F1F5F9;
-      color: #475569;
+      display: inline-block;
+      min-width: 18px;
+      color: #333333;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       flex-shrink: 0;
-      margin-top: 1px;
     }
 
     .option-correct .option-marker {
-      background: #10B981;
-      color: #FFFFFF;
+      color: var(--secondary-color);
     }
 
     .option-content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 1px;
     }
 
     .option-text {
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
     .correct-badge {
       margin-right: auto;
       font-size: 11px;
-      font-weight: 700;
-      color: #059669;
-      background: #ECFDF5;
-      border: 1px solid #A7F3D0;
-      padding: 2px 7px;
-      border-radius: 4px;
+      font-weight: 800;
+      color: var(--secondary-color);
+      padding: 1px 6px;
       align-self: center;
     }
 
     .qa-answer-box {
-      background: rgba(240, 247, 255, 0.85);
-      border-radius: 6px;
-      padding: 6px 9px;
+      background: #EFF6FF;
+      border-right: 3px solid var(--primary-color);
+      padding: 5px 9px;
       font-size: 13px;
-      line-height: 1.25;
+      line-height: 1.4;
     }
 
     .qa-answer-title {
       font-weight: 700;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
 
     .qa-badge-a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: #059669;
-      color: #FFFFFF;
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      font-size: 11px;
+      display: inline-block;
+      color: var(--secondary-color);
+      font-size: 12px;
       font-weight: 800;
-      margin-left: 4px;
+      margin-left: 3px;
     }
 
     .qa-explanation-box {
       font-size: 12.5px;
-      color: #475569;
-      padding: 4px 9px;
+      color: #444444;
+      padding: 3px 8px;
+      border-right: 2px solid #CBD5E1;
     }
 
     .exp-title {
       font-weight: 700;
-      color: #334155;
+      color: #333333;
     }
 
     /* ------------------------------------------------------------- */
@@ -629,18 +673,18 @@ export function buildBlocksCss(): string {
     /* ------------------------------------------------------------- */
     .element-quote {
       position: relative;
-      background: rgba(250, 251, 253, 0.82);
+      background: #F8FAFC;
       border: 1px solid #E2E8F0;
-      border-right: 3px solid var(--primary-color);
-      padding: 8px 14px;
-      border-radius: 0 8px 8px 0;
+      border-right: 3.5px solid var(--primary-color);
+      padding: 7px 12px;
       break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .quote-text {
       font-size: 13px;
-      line-height: 1.36;
-      color: #334155;
+      line-height: 1.5;
+      color: #333333;
     }
 
     .quote-author {
@@ -660,17 +704,17 @@ export function buildBlocksCss(): string {
       align-items: center;
       gap: 4px;
       break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .lecture-img {
       max-width: 100%;
       height: auto;
-      border-radius: 4px;
     }
 
     .image-caption {
       font-size: 12px;
-      color: #64748B;
+      color: #555555;
       text-align: center;
     }
 
@@ -678,21 +722,21 @@ export function buildBlocksCss(): string {
     /* الخلاصة Summary                                                */
     /* ------------------------------------------------------------- */
     .element-summary-card {
-      background: rgba(250, 251, 253, 0.82);
-      border: 1px solid #E2E8F0;
-      border-radius: 9px;
-      padding: 8px 12px;
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      border-right: 4px solid var(--secondary-color);
+      padding: 9px 12px;
       display: flex;
       flex-direction: column;
       gap: 5px;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
       break-inside: avoid;
+      page-break-inside: avoid;
     }
 
     .summary-header {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       font-weight: 800;
       color: var(--primary-color);
       font-size: 13.5px;
@@ -704,19 +748,19 @@ export function buildBlocksCss(): string {
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .summary-item {
       display: flex;
       align-items: baseline;
-      gap: 6px;
+      gap: 5px;
       font-size: 13px;
-      line-height: 1.25;
+      line-height: 1.4;
     }
 
     .summary-check {
-      color: #059669;
+      color: var(--secondary-color);
       font-weight: 800;
     }
 
@@ -724,9 +768,7 @@ export function buildBlocksCss(): string {
     /* الأقسام Section                                                */
     /* ------------------------------------------------------------- */
     .element-section {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      display: block;
     }
 
     .section-container-title {
@@ -738,7 +780,7 @@ export function buildBlocksCss(): string {
     .section-body {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
     /* ------------------------------------------------------------- */
@@ -746,24 +788,22 @@ export function buildBlocksCss(): string {
     /* ------------------------------------------------------------- */
     .element-bilingual-card {
       background: #FFFFFF;
-      border: 1px solid #E2E8F0;
-      border-radius: 9px;
-      overflow: hidden;
-      margin: 5px 0;
+      border: 1px solid #CBD5E1;
+      margin: 4px 0;
       break-inside: avoid;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      page-break-inside: avoid;
     }
 
     .bilingual-en-section {
       background: #F8FAFC;
-      padding: 8px 12px 9px 12px;
+      padding: 7px 11px;
       direction: ltr;
       text-align: left;
-      border-left: 4px solid var(--primary-color);
+      border-left: 3px solid var(--primary-color);
     }
 
     .bilingual-meta-bar {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .bilingual-badge-en {
@@ -773,30 +813,27 @@ export function buildBlocksCss(): string {
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--primary-color);
-      background: #E2E8F0;
-      padding: 1px 6px;
-      border-radius: 4px;
     }
 
     .bilingual-en-text {
       font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
       font-size: 13px;
       line-height: 1.45;
-      color: #0F172A;
+      color: #111827;
       font-weight: 500;
     }
 
     .bilingual-ar-section {
       background: #FFFFFF;
-      padding: 8px 12px 9px 12px;
+      padding: 7px 11px;
       direction: rtl;
       text-align: right;
-      border-top: 1px dashed #E2E8F0;
-      border-right: 4px solid var(--secondary-color);
+      border-top: 1px solid #E2E8F0;
+      border-right: 3px solid var(--secondary-color);
     }
 
     .bilingual-ar-header {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .bilingual-badge-ar {
@@ -804,24 +841,20 @@ export function buildBlocksCss(): string {
       font-size: 10.5px;
       font-weight: 700;
       color: var(--secondary-color);
-      background: #ECFDF5;
-      padding: 1px 7px;
-      border-radius: 4px;
     }
 
     .bilingual-ar-text {
       font-family: var(--theme-font-family);
       font-size: 12.5px;
       line-height: 1.45;
-      color: #334155;
+      color: #333333;
     }
 
     .bilingual-notes {
-      margin-top: 6px;
+      margin-top: 4px;
       background: #FFFBEB;
-      border: 1px solid #FDE68A;
-      border-radius: 6px;
-      padding: 4px 8px;
+      border-top: 1px solid #FDE68A;
+      padding: 3px 7px;
       font-size: 11.5px;
       color: #92400E;
       line-height: 1.35;

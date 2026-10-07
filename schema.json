@@ -13,7 +13,7 @@
         "year": { "type": "string", "description": "السنة الدراسية" },
         "semester": { "type": "string", "description": "الفصل الدراسي" },
         "subject": { "type": "string", "description": "اسم المادة" },
-        "subjectType": { "type": "string", "description": "طبيعة المادة (نظري / عملي)" },
+        "subjectType": { "type": "string", "description": "طبيعة المادة (كتابية / مؤتمتة)" },
         "lecture": { "type": "string", "description": "المحاضرة (رقمها أو اسمها)" },
         "totalPages": { "type": ["number", "string"], "description": "عدد الصفحات الكلي" },
         "professor": { "type": "string", "description": "دكتور المادة" },
