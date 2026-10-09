@@ -11,9 +11,9 @@ export const moallemTheme: ThemeDefinition = {
   id: 'moallem',
 
   colors: {
-    primary: '#064E3B',     // أخضر زمردي عميق
-    secondary: '#059669',   // أخضر حيوي
-    accent: '#DC2626',      // أحمر للأرقام
+    primary: '#064E3B',     // أخضر زمردي عميق للعناوين الرئيسية
+    secondary: '#881337',   // بوردو حيوي للعناوين الفرعية والمفاتيح (لون متباين ليس من مشتقات الأخضر)
+    accent: '#DC2626',      // أحمر للأرقام والتنبيهات
     lightBg: '#ECFDF5',
     border: '#A7F3D0',
     heading: '#064E3B',
@@ -21,7 +21,7 @@ export const moallemTheme: ThemeDefinition = {
 
   typography: {
     fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
-    fontSize: '16px',
+    fontSize: '18px',
     lineHeight: 1.5,
   },
 

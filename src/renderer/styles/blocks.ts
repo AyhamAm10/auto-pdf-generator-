@@ -59,7 +59,7 @@ export function buildBlocksCss(): string {
     }
 
     .h1-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--primary-color);
       line-height: 1.4;
@@ -92,14 +92,14 @@ export function buildBlocksCss(): string {
     .h2-prefix {
       color: var(--primary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 20px;
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
     }
 
     .h2-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--primary-color);
       line-height: 1.4;
@@ -115,7 +115,7 @@ export function buildBlocksCss(): string {
     }
 
     .h3-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 800;
       color: var(--secondary-color);
       line-height: 1.4;
@@ -125,7 +125,7 @@ export function buildBlocksCss(): string {
     /* الفقرات P الأكاديمية                                          */
     /* ------------------------------------------------------------- */
     .element-p {
-      font-size: var(--base-font-size, 16px);
+      font-size: var(--base-font-size, 18px);
       line-height: var(--base-line-height);
       color: #111827;
       text-align: justify;
@@ -133,35 +133,41 @@ export function buildBlocksCss(): string {
       margin: 3.5px 0;
     }
 
-    /* تمييز العناصر والعناوين الفرعية داخل الفقرات بألوان طباعية حيوية */
+    /* تمييز العناصر والعناوين الفرعية داخل الفقرات بألوان طباعية حيوية متناسقة ومتباينة */
     .lead-num-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .lead-letter-title {
-      color: var(--primary-color);
+      color: var(--secondary-color);
       font-weight: 800;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .lead-stage-title {
-      color: var(--primary-color);
+      color: var(--secondary-color);
       font-weight: 800;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .lead-subitem-title {
-      color: var(--primary-color);
+      color: var(--secondary-color);
       font-weight: 800;
-      font-size: 16px;
+      font-size: 18px;
+    }
+
+    .lead-bullet-title {
+      color: var(--secondary-color);
+      font-weight: 800;
+      font-size: 18px;
     }
 
     .lead-note {
       color: var(--accent-color);
       font-weight: 800;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .p-highlighted {
@@ -270,7 +276,7 @@ export function buildBlocksCss(): string {
     .list-number {
       display: inline-block;
       min-width: 22px;
-      color: var(--primary-color);
+      color: var(--secondary-color);
       font-size: 14.5px;
       font-weight: 800;
       flex-shrink: 0;
@@ -285,7 +291,7 @@ export function buildBlocksCss(): string {
 
     .list-alpha {
       font-weight: 800;
-      color: var(--primary-color);
+      color: var(--secondary-color);
     }
 
     .sub-list {

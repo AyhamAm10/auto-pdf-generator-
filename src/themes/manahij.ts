@@ -11,9 +11,9 @@ export const manahijTheme: ThemeDefinition = {
   id: 'manahij',
 
   colors: {
-    primary: '#881337',     // عنابي داكن
-    secondary: '#E11D48',   // أحمر ياقوتي
-    accent: '#DC2626',      // أحمر للأرقام
+    primary: '#881337',     // بوردو / عنابي داكن للعناوين الرئيسية
+    secondary: '#005BB5',   // كحلي أزرق حيوي للعناوين الفرعية والمفاتيح (لون متباين مع البوردو)
+    accent: '#DC2626',      // أحمر قوي للتنبيهات
     lightBg: '#FFF1F2',
     border: '#FECDD3',
     heading: '#881337',
@@ -21,7 +21,7 @@ export const manahijTheme: ThemeDefinition = {
 
   typography: {
     fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
-    fontSize: '16px',
+    fontSize: '18px',
     lineHeight: 1.5,
   },
 

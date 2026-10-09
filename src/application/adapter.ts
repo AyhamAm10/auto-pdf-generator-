@@ -123,6 +123,7 @@ function convertElement(el: LegacyElement): ContentBlock | null {
       };
 
     case 'page-break':
+    case 'bp':
       return {
         type: 'divider',
         style: 'page-break',

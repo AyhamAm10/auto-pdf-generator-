@@ -11,9 +11,9 @@ export const purpleTheme: ThemeDefinition = {
   id: 'purple',
 
   colors: {
-    primary: '#4C1D95',     // بنفسجي ملكي
-    secondary: '#7C3AED',   // بنفسجي ساطع
-    accent: '#DC2626',      // أحمر للأرقام
+    primary: '#4C1D95',     // بنفسجي ملكي للعناوين الرئيسية
+    secondary: '#0E7490',   // بترولي حيوي للعناوين الفرعية والمفاتيح (لون متباين ليس من مشتقات البنفسجي)
+    accent: '#DC2626',      // أحمر للأرقام والتنبيهات
     lightBg: '#F5F3FF',
     border: '#DDD6FE',
     heading: '#4C1D95',
@@ -21,7 +21,7 @@ export const purpleTheme: ThemeDefinition = {
 
   typography: {
     fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
-    fontSize: '16px',
+    fontSize: '18px',
     lineHeight: 1.5,
   },
 
