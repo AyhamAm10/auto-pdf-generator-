@@ -197,6 +197,22 @@ export function buildBlocksCss(): string {
       margin-left: 5px;
     }
 
+    /* توثيق إعداد وتلخيص المحاضرة — خط صغير وأنيق في أسفل المحتوى فوق التذييل */
+    .p-author-credit {
+      margin-top: 55px !important;
+      margin-bottom: 2px !important;
+      font-size: 11px !important;
+      font-weight: 700 !important;
+      color: #64748B !important;
+      text-align: center !important;
+      letter-spacing: 0.5px;
+      padding-top: 6px;
+      border-top: 1px dashed #CBD5E1;
+      width: 100%;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
     /* ------------------------------------------------------------- */
     /* الفواصل Line / Divider                                        */
     /* ------------------------------------------------------------- */

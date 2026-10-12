@@ -6,7 +6,7 @@ dist/
 
 # Generated PDF and preview outputs
 output/
-
+archivedjson/
 # Logs
 *.log
 npm-debug.log*

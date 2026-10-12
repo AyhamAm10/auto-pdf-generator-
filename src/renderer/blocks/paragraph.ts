@@ -34,8 +34,9 @@ function highlightAcademicKeywords(text: string): string {
 
 export function renderParagraph(block: ParagraphBlock): string {
   let content = renderRichText(block.text, block.html);
-  const textStr = block.text || '';
+  const textStr = (block.text || '').trim();
   const isIntro = textStr.startsWith('مدخل تمهيدي:') || textStr.startsWith('تمهيد:') || textStr.startsWith('مقدمة:');
+  const isAuthor = textStr.length < 100 && (/^(اعداد|إعداد|تلخيص)\b/i.test(textStr) || textStr.includes('قمر بودقة') || /^—\s*انتهت/i.test(textStr));
 
   const classes = ['element-p'];
   if (block.highlight) {
@@ -43,6 +44,8 @@ export function renderParagraph(block: ParagraphBlock): string {
   } else if (isIntro) {
     classes.push('p-intro');
     content = content.replace(/^(مدخل تمهيدي:|تمهيد:|مقدمة:)/, '<span class="intro-prefix-badge">$1</span>');
+  } else if (isAuthor) {
+    classes.push('p-author-credit');
   } else {
     content = highlightAcademicKeywords(content);
   }
