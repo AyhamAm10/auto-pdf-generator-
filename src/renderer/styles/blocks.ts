@@ -545,27 +545,30 @@ export function buildBlocksCss(): string {
     }
 
     /* ------------------------------------------------------------- */
-    /* الأسئلة والأجوبة Q&A (المواد المؤتمتة) — تصميم ورقي أكاديمي  */
+    /* ------------------------------------------------------------- */
+    /* الأسئلة والأجوبة Q&A — نمط أكاديمي انسيابي للمحاضرات الجامعية   */
     /* ------------------------------------------------------------- */
     .element-qa-card {
-      background: #FAFAFA;
-      border: 1px solid #CBD5E1;
-      border-right: 4px solid var(--primary-color);
-      padding: 9px 12px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin: 8px 0 12px 0;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      break-inside: avoid;
-      page-break-inside: avoid;
-      margin: 5px 0;
+      gap: 3px;
+      break-inside: auto;
+      page-break-inside: auto;
     }
 
     .qa-question-header {
       display: flex;
-      align-items: flex-start;
-      gap: 7px;
+      align-items: baseline;
+      gap: 6px;
       font-weight: 800;
-      font-size: 14px;
+      font-size: 14.5px;
+      line-height: 1.5;
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .qa-question-text {
@@ -578,59 +581,60 @@ export function buildBlocksCss(): string {
     .qa-q-line {
       line-height: 1.5;
       color: #0F172A;
+      font-weight: 800;
     }
 
     .qa-badge-q {
       display: inline-block;
       color: var(--primary-color);
-      font-size: 13.5px;
+      font-size: 15px;
       font-weight: 800;
       flex-shrink: 0;
-      min-width: 20px;
+      line-height: 1.5;
     }
 
     .qa-tag {
       margin-right: auto;
-      color: var(--primary-color);
+      color: #64748B;
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 600;
       padding: 1px 6px;
-      border: 1px solid #93C5FD;
+      background: #F1F5F9;
+      border-radius: 3px;
+      border: 1px solid #E2E8F0;
+      flex-shrink: 0;
+      align-self: center;
     }
 
     .qa-options-list {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
       padding-right: 22px;
+      margin: 4px 0;
     }
 
     .qa-option-item {
       display: flex;
-      align-items: flex-start;
-      gap: 7px;
+      align-items: baseline;
+      gap: 6px;
       font-size: 13px;
-      padding: 4px 8px;
-      border: 1px solid #E2E8F0;
-      background: #FFFFFF;
-      color: #333333;
-      margin-bottom: 1px;
+      padding: 2px 0;
+      background: transparent;
+      border: none;
+      color: #334155;
     }
 
     .option-correct {
-      background: #F0FDF4 !important;
-      color: #065F46 !important;
+      background: transparent !important;
+      color: var(--secondary-color) !important;
       font-weight: 700;
-      border: 1.5px solid var(--secondary-color) !important;
+      border: none !important;
     }
 
     .option-marker {
-      display: inline-block;
-      min-width: 18px;
-      color: #333333;
-      font-size: 11px;
       font-weight: 800;
-      flex-shrink: 0;
+      color: #475569;
     }
 
     .option-correct .option-marker {
@@ -658,36 +662,46 @@ export function buildBlocksCss(): string {
     }
 
     .qa-answer-box {
-      background: #EFF6FF;
-      border-right: 3px solid var(--primary-color);
-      padding: 5px 9px;
-      font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .qa-answer-title {
-      font-weight: 700;
-      margin-bottom: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      background: transparent;
+      border: none;
+      padding: 0;
+      margin-top: 2px;
+      font-size: 13.5px;
+      line-height: 1.6;
     }
 
     .qa-badge-a {
       display: inline-block;
       color: var(--secondary-color);
-      font-size: 12px;
+      font-size: 15px;
       font-weight: 800;
-      margin-left: 3px;
+      flex-shrink: 0;
+      line-height: 1.6;
+    }
+
+    .qa-answer-text {
+      flex: 1;
+      color: #1E293B;
+      font-size: 13.5px;
+      line-height: 1.6;
+      text-align: justify;
     }
 
     .qa-explanation-box {
       font-size: 12.5px;
-      color: #444444;
+      color: #475569;
       padding: 3px 8px;
-      border-right: 2px solid #CBD5E1;
+      background: transparent;
+      border-right: 2px solid var(--accent-color, #CBD5E1);
+      margin-top: 4px;
     }
 
     .exp-title {
       font-weight: 700;
-      color: #333333;
+      color: #1E293B;
     }
 
     /* ------------------------------------------------------------- */

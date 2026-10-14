@@ -149,7 +149,7 @@ function convertElement(el: LegacyElement): ContentBlock | null {
         type: 'callout',
         variant: el.variant || 'note',
         title: el.title,
-        content: el.content || '',
+        content: el.content || el.text || '',
         icon: el.icon,
       };
 

@@ -61,9 +61,14 @@ export function buildPaginationCss(): string {
       break-inside: auto;
     }
 
-    /* Q&A cards: keep together */
+    /* Q&A elements: allow clean academic flow, keep question with answer */
     .element-qa-card {
-      break-inside: avoid;
+      break-inside: auto;
+    }
+
+    .qa-question-header {
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     /* Quotes: keep together */

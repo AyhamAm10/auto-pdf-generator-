@@ -48,12 +48,12 @@ export function renderQuestion(block: QuestionBlock): string {
     `;
   }
 
-  // Answer box
+  // Answer block (Clean academic style — no card, no 'الحل النموذجي')
   let answerHtml = '';
   if (block.answer) {
     answerHtml = `
       <div class="qa-answer-box">
-        <div class="qa-answer-title"><span class="qa-badge-a">ج</span> الحل النموذجي:</div>
+        <span class="qa-badge-a">ج:</span>
         <div class="qa-answer-text">${renderRichText(block.answer)}</div>
       </div>
     `;
@@ -64,7 +64,7 @@ export function renderQuestion(block: QuestionBlock): string {
   if (block.explanation) {
     explanationHtml = `
       <div class="qa-explanation-box">
-        <span class="exp-title">التعليل والشرح:</span> ${renderRichText(block.explanation)}
+        <span class="exp-title">توضيح:</span> ${renderRichText(block.explanation)}
       </div>
     `;
   }
@@ -83,7 +83,7 @@ export function renderQuestion(block: QuestionBlock): string {
   return `
     <div class="element-qa-card">
       <div class="qa-question-header">
-        <div class="qa-q-prefix"><span class="qa-badge-q">س</span></div>
+        <span class="qa-badge-q">س:</span>
         <div class="qa-question-text">${questionContentHtml}</div>
         ${tagHtml}
       </div>
