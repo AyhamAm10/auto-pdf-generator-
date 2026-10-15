@@ -170,6 +170,23 @@ export function buildBlocksCss(): string {
       font-size: 18px;
     }
 
+    .lead-qa-q {
+      color: var(--primary-color);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .lead-qa-a {
+      color: var(--secondary-color);
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .quote-secondary {
+      color: var(--secondary-color);
+      font-weight: 700;
+    }
+
     .p-highlighted {
       border-right: 3.5px solid #D97706;
       padding: 5px 10px;
@@ -362,9 +379,9 @@ export function buildBlocksCss(): string {
       text-align: justify;
     }
 
-    /* ملاحظة — أزرق */
+    /* ملاحظة — أزرق هادئ مع شفافية */
     .callout-note {
-      background: #EFF6FF;
+      background: rgba(239, 246, 255, 0.65);
       border-right: 4px solid var(--primary-color);
       color: #111827;
     }
@@ -373,9 +390,9 @@ export function buildBlocksCss(): string {
       color: var(--primary-color);
     }
 
-    /* تنبيه هام — أحمر */
+    /* تنبيه هام — أحمر مع شفافية */
     .callout-important {
-      background: #FEF2F2;
+      background: rgba(254, 242, 242, 0.65);
       border-right: 4px solid var(--accent-color);
       color: #111827;
     }
@@ -384,9 +401,9 @@ export function buildBlocksCss(): string {
       color: var(--accent-color);
     }
 
-    /* سؤال / فكرة امتحانية — ذهبي */
+    /* سؤال / فكرة امتحانية / مهم — ذهبي مع شفافية */
     .callout-exam_tip {
-      background: #FFFBEB;
+      background: rgba(255, 251, 235, 0.65);
       border-right: 4px solid #D97706;
       color: #111827;
     }
@@ -395,9 +412,20 @@ export function buildBlocksCss(): string {
       color: #B45309;
     }
 
-    /* تعريف ومفهوم — بنفسجي */
+    /* للاطلاع — سماوي ناعم مع شفافية */
+    .callout-reading {
+      background: rgba(240, 249, 255, 0.65);
+      border-right: 4px solid #0284C7;
+      color: #111827;
+    }
+
+    .callout-reading .callout-header {
+      color: #0284C7;
+    }
+
+    /* تعريف ومفهوم — بنفسجي مع شفافية */
     .callout-definition {
-      background: #F5F3FF;
+      background: rgba(245, 243, 255, 0.65);
       border-right: 4px solid #7C3AED;
       color: #111827;
     }
@@ -406,9 +434,9 @@ export function buildBlocksCss(): string {
       color: #6D28D9;
     }
 
-    /* إضاءة علمية — أخضر */
+    /* إضاءة علمية — أخضر مع شفافية */
     .callout-info {
-      background: #F0FDF4;
+      background: rgba(240, 253, 244, 0.65);
       border-right: 4px solid var(--secondary-color);
       color: #111827;
     }

@@ -29,6 +29,10 @@ function highlightAcademicKeywords(text: string): string {
   // 7. Short sub-items like "- النوع:", "- الحالة الاجتماعية:", "- الجنسية:"
   res = res.replace(/(^|<br\/>)(\s*[-–]\s*[^:<\n]{2,45}:)/g, '$1<strong class="lead-subitem-title">$2</strong>');
 
+  // 8. Q&A leads: "س:", "س/", "• س:", "ج:", "ج/", "• ج:"
+  res = res.replace(/(^|<br\/>)(\s*•?\s*س\s*[:\/\-–]\s*)/g, '$1<strong class="lead-qa-q">$2</strong>');
+  res = res.replace(/(^|<br\/>)(\s*•?\s*ج\s*[:\/\-–]\s*)/g, '$1<strong class="lead-qa-a">$2</strong>');
+
   return res;
 }
 

@@ -21,11 +21,23 @@ export function escapeHtml(str: string | number | null | undefined): string {
 }
 
 /**
+ * Wrap quoted text in a span with secondary color.
+ * Supports standard quotes (&quot;), curly quotes (“...”), and Arabic/French quotes («...»).
+ */
+export function highlightQuotes(str: string): string {
+  return str
+    .replace(/(&quot;)([^&<>\n]+?)(&quot;)/g, '<span class="quote-secondary">$1$2$3</span>')
+    .replace(/(“)([^”<>\n]+?)(”)/g, '<span class="quote-secondary">$1$2$3</span>')
+    .replace(/(«)([^»<>\n]+?)(»)/g, '<span class="quote-secondary">$1$2$3</span>');
+}
+
+/**
  * Process rich text — either return raw HTML or escape plain text.
- * Preserves newlines as <br/> in plain text.
+ * Preserves newlines as <br/> in plain text and highlights quoted terms.
  */
 export function renderRichText(text?: string, html?: string): string {
   if (html) return html;
   if (!text) return '';
-  return escapeHtml(text).replace(/\n/g, '<br/>');
+  const escaped = escapeHtml(text).replace(/\n/g, '<br/>');
+  return highlightQuotes(escaped);
 }

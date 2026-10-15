@@ -107,7 +107,7 @@ export interface ListBlock {
   items: Array<string | ListItemData>;
 }
 
-export type CalloutVariant = 'note' | 'important' | 'exam_tip' | 'definition' | 'info';
+export type CalloutVariant = 'note' | 'important' | 'exam_tip' | 'definition' | 'info' | 'reading';
 
 export interface CalloutBlock {
   type: 'callout';

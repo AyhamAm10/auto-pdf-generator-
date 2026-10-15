@@ -5,7 +5,7 @@
  */
 
 import { ListBlock, ListItemData } from '../../domain/document';
-import { escapeHtml } from '../utils';
+import { escapeHtml, highlightQuotes } from '../utils';
 
 export function renderList(block: ListBlock): string {
   const style = block.style || 'bullet';
@@ -17,17 +17,17 @@ export function renderList(block: ListBlock): string {
     let subItemsHtml = '';
 
     if (typeof item === 'string') {
-      text = escapeHtml(item);
+      text = highlightQuotes(escapeHtml(item));
     } else {
       const itemData = item as ListItemData;
-      text = escapeHtml(itemData.text || '');
+      text = highlightQuotes(escapeHtml(itemData.text || ''));
       if (itemData.badge) {
         badge = `<span class="list-badge">${escapeHtml(itemData.badge)}</span>`;
       }
       if (Array.isArray(itemData.subItems) && itemData.subItems.length > 0) {
         subItemsHtml = `
           <ul class="sub-list">
-            ${itemData.subItems.map(sub => `<li>${escapeHtml(sub)}</li>`).join('')}
+            ${itemData.subItems.map(sub => `<li>${highlightQuotes(escapeHtml(sub))}</li>`).join('')}
           </ul>
         `;
       }

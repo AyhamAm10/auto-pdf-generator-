@@ -23,9 +23,13 @@ See [agent.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/agen
    - Page Break -> `{"type": "bp"}` in `data.json` (use judiciously to prevent orphan headings)
    - Generate command -> `npm.cmd run generate`
 
-5. **Doctor Commentary & Callout Title ("مهم")**:
-   - For doctor speech/questions in parentheses, use `{"type": "callout", "title": "مهم"}`.
-   - Do NOT use long titles like `"سؤال امتحاني (كلام الدكتور)"`. Simply `"مهم"`.
+5. **Formatting Rules & Content Delimiters (Parentheses, Quotes, Callouts, Q&A)**:
+   - **Parentheses `(...)`**: Remarks or notes inside parentheses stay **as-is in the running paragraph (`p`)**. Do NOT extract them into a separate callout box titled "مهم".
+   - **Quotation Marks `"..."`**: Any word or phrase in quotes (`"..."`, `“...”`, `«...»`) is automatically styled with the secondary theme color (`var(--secondary-color)`).
+   - **Doctor Commentary & Exam Notes `$$ ... $$`**: Text delimited by `$$ ... $$` is placed in `{"type": "callout", "title": "مهم"}`.
+   - **Supplementary Reading `~ ... ~`**: Text delimited by `~ ... ~` is placed in `{"type": "callout", "title": "للاطلاع"}`.
+   - **Questions & Answers (`س` and `ج`)**: Use `س:` for questions and `ج:` for answers (styled automatically as distinct bold leads).
+   - **Paragraph Priority & Clean Callouts**: Flowing paragraphs (`p`) always have primary priority. Callouts are reserved strictly for explicit delimiters (`$$...$$` or `~...~`) and maintain basic academic styling with subtle transparency.
 
 6. **Fast PDF Extraction & Generation Pipeline**:
    - For processing new lecture PDFs into JSON and generating documents, strictly follow [generate.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/generate.md).

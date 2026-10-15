@@ -14,10 +14,20 @@ const CALLOUT_DEFAULTS: Record<string, { icon: string; title: string }> = {
   exam_tip:   { icon: '★', title: 'فكرة امتحانية / سؤال دورات' },
   definition: { icon: '◄', title: 'تعريف ومفهوم اصطلاحي' },
   info:       { icon: '✦', title: 'إضاءة علمية' },
+  reading:    { icon: '📖', title: 'للاطلاع' },
 };
 
 export function renderCallout(block: CalloutBlock): string {
-  const variant = block.variant || 'note';
+  let variant = block.variant;
+  if (!variant) {
+    if (block.title === 'للاطلاع') {
+      variant = 'reading';
+    } else if (block.title === 'مهم') {
+      variant = 'exam_tip';
+    } else {
+      variant = 'note';
+    }
+  }
   const defaults = CALLOUT_DEFAULTS[variant] || CALLOUT_DEFAULTS.note;
 
   const icon = block.icon || defaults.icon;
@@ -25,7 +35,7 @@ export function renderCallout(block: CalloutBlock): string {
 
   let bodyContent = '';
   if (Array.isArray(block.content)) {
-    bodyContent = block.content.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+    bodyContent = block.content.map(p => `<p>${renderRichText(p)}</p>`).join('');
   } else {
     bodyContent = `<p>${renderRichText(block.content)}</p>`;
   }
