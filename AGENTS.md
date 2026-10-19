@@ -29,6 +29,7 @@ See [agent.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/agen
    - **Doctor Commentary & Exam Notes `$$ ... $$`**: Text delimited by `$$ ... $$` is placed in `{"type": "callout", "title": "مهم"}`.
    - **Supplementary Reading `~ ... ~`**: Text delimited by `~ ... ~` is placed in `{"type": "callout", "title": "للاطلاع"}`.
    - **Questions & Answers (`س` and `ج`)**: Use `س:` for questions and `ج:` for answers (styled automatically as distinct bold leads).
+   - **Zero Inferred Tags in Q&A (`tag`)**: Strictly forbidden to invent or add `tag` or classifications (such as "سؤال مقالي", "سؤال تعداد", "سؤال امتحاني") from oneself. Do NOT include `tag` in `qa` elements unless the tag/classification is explicitly and verbatim written in the user's source text. If absent in the source, `tag` must be completely omitted.
    - **Paragraph Priority & Clean Callouts**: Flowing paragraphs (`p`) always have primary priority. Callouts are reserved strictly for explicit delimiters (`$$...$$` or `~...~`) and maintain basic academic styling with subtle transparency.
 
 6. **Fast PDF Extraction & Generation Pipeline**:
