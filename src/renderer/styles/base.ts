@@ -20,8 +20,8 @@ export function buildBaseCss(): string {
       --border-color: var(--theme-border, #CBD5E1);
       --heading-color: var(--theme-heading, #1B365D);
       --font-family: var(--theme-font-family, 'Simplified Arabic', Arial, Tahoma, sans-serif);
-      --base-font-size: var(--theme-font-size, 18px);
-      --base-line-height: var(--theme-line-height, 1.5);
+      --base-font-size: var(--theme-font-size, 19px);
+      --base-line-height: var(--theme-line-height, 1.75);
     }
 
     @page {

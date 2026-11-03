@@ -21,8 +21,8 @@ export const ershadTheme: ThemeDefinition = {
 
   typography: {
     fontFamily: "'Simplified Arabic', Arial, Tahoma, sans-serif",
-    fontSize: '18px',
-    lineHeight: 1.5,
+    fontSize: '19px',
+    lineHeight: 1.75,
   },
 
   assets: {

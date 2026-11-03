@@ -21,6 +21,16 @@ export function renderDivider(block: DividerBlock): string {
     `;
   }
 
+  if (style === 'lecture') {
+    return `
+      <div class="element-lecture-marker">
+        <span class="lecture-marker-rule"></span>
+        <span class="lecture-marker-text">${escapeHtml(block.label || '')}</span>
+        <span class="lecture-marker-rule"></span>
+      </div>
+    `;
+  }
+
   if (style === 'page-break') {
     return `<div class="page-break" style="break-before: page; page-break-before: always; height: 0; margin: 0; padding: 0;"></div>`;
   }

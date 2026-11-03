@@ -29,9 +29,16 @@ See [agent.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/agen
    - **Doctor Commentary & Exam Notes `$$ ... $$`**: Text delimited by `$$ ... $$` is placed in `{"type": "callout", "title": "مهم"}`.
    - **Supplementary Reading `~ ... ~`**: Text delimited by `~ ... ~` is placed in `{"type": "callout", "title": "للاطلاع"}`.
    - **Questions & Answers (`س` and `ج`)**: Use `س:` for questions and `ج:` for answers (styled automatically as distinct bold leads).
+   - **Lecture Separator (`{"type": "lecture", "text": "المحاضرة الثانية"}`)**: When one file combines several lectures, put a lecture marker at the start of each lecture (`"المحاضرة الأولى"` right after `h1`, then `{"type": "bp"}` + marker for each following lecture). Use it ONLY when it is certain a new lecture begins (explicitly stated in the source or by the user). A new chapter/axis heading alone is NOT proof. If not certain, do NOT separate.
    - **Zero Inferred Tags in Q&A (`tag`)**: Strictly forbidden to invent or add `tag` or classifications (such as "سؤال مقالي", "سؤال تعداد", "سؤال امتحاني") from oneself. Do NOT include `tag` in `qa` elements unless the tag/classification is explicitly and verbatim written in the user's source text. If absent in the source, `tag` must be completely omitted.
    - **Paragraph Priority & Clean Callouts**: Flowing paragraphs (`p`) always have primary priority. Callouts are reserved strictly for explicit delimiters (`$$...$$` or `~...~`) and maintain basic academic styling with subtle transparency.
 
-6. **Fast PDF Extraction & Generation Pipeline**:
-   - For processing new lecture PDFs into JSON and generating documents, strictly follow [generate.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/generate.md).
-   - Zero inspection of source code files (`.ts`, `.js`, `.css`). Read only `.md` files and target PDF.
+6. **Strict Direct Text-to-JSON Generation (Zero-Script Directive)**:
+   - **ABSOLUTELY FORBIDDEN to create any scripts, parsers, or temporary files in `scratch/` or anywhere else.**
+   - **ABSOLUTELY FORBIDDEN to inspect, modify, or run JS/TS build scripts.**
+   - When the user sends lecture text or notes:
+     1. Parse and format the text **natively in memory** according to the schema in [json.role.md](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/json.role.md) and formatting rules above.
+     2. Write/update [data.json](file:///c:/work/zien/library%20platform/auto-generate-pdf/v2/data.json) **DIRECTLY** in a single file-write operation.
+     3. Do not run commands, do not create scratch files, do not over-analyze.
+     4. Notify the user that `data.json` is ready for `npm run generate`.
+

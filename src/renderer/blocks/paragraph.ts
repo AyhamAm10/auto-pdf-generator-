@@ -36,6 +36,33 @@ function highlightAcademicKeywords(text: string): string {
   return res;
 }
 
+/**
+ * A line is a question when it starts with "س:" / "س/" (optionally after a bullet),
+ * or when the whole line is a short sentence ending with "؟" / "?".
+ */
+function isQuestionLine(lineHtml: string): boolean {
+  const plain = lineHtml.replace(/<[^>]+>/g, '').replace(/&quot;/g, '"').trim();
+  if (!plain) return false;
+  if (/^•?\s*س\s*[:\/\-–]/.test(plain)) return true;
+  // "...؟" optionally followed by a short parenthetical note and/or a colon
+  return plain.length <= 180 && /[؟?]\s*[)»"]?\s*(\([^)]{0,80}\))?\s*:?$/.test(plain);
+}
+
+/**
+ * Split rendered paragraph HTML on <br/> into block-level lines so each item
+ * gets breathing room, and mark question lines so they render in color.
+ */
+function wrapLines(content: string): string {
+  const lines = content.split('<br/>');
+  if (lines.length === 1 && !isQuestionLine(content)) return content;
+  return lines
+    .map(line => {
+      const cls = isQuestionLine(line) ? 'p-line p-line-q' : 'p-line';
+      return `<span class="${cls}">${line || '&nbsp;'}</span>`;
+    })
+    .join('');
+}
+
 export function renderParagraph(block: ParagraphBlock): string {
   let content = renderRichText(block.text, block.html);
   const textStr = (block.text || '').trim();
@@ -52,6 +79,10 @@ export function renderParagraph(block: ParagraphBlock): string {
     classes.push('p-author-credit');
   } else {
     content = highlightAcademicKeywords(content);
+  }
+
+  if (!isAuthor) {
+    content = wrapLines(content);
   }
 
   return `

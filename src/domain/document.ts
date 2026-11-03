@@ -194,7 +194,7 @@ export interface SummaryBlock {
   takeaways: string[];
 }
 
-export type DividerStyle = 'solid' | 'dashed' | 'dotted' | 'gradient' | 'with-icon' | 'page-break';
+export type DividerStyle = 'solid' | 'dashed' | 'dotted' | 'gradient' | 'with-icon' | 'page-break' | 'lecture';
 
 export interface DividerBlock {
   type: 'divider';
@@ -202,6 +202,8 @@ export interface DividerBlock {
   style?: DividerStyle;
   /** Icon shown in center when style is 'with-icon' */
   icon?: string;
+  /** Label shown in center when style is 'lecture' (e.g. "المحاضرة الثانية") */
+  label?: string;
 }
 
 export interface BilingualBlock {

@@ -18,7 +18,7 @@ export function buildBlocksCss(): string {
     .page-content-area {
       position: relative;
       z-index: 5;
-      padding: 4px 12mm 4px 12mm;
+      padding: 4px 15mm 4px 15mm;
       display: block;
       font-size: var(--base-font-size);
       line-height: var(--base-line-height);
@@ -41,8 +41,8 @@ export function buildBlocksCss(): string {
       align-items: center;
       justify-content: center;
       text-align: center;
-      margin: 8px 0 6px 0;
-      padding: 7px 0 8px 0;
+      margin: 10px 0 10px 0;
+      padding: 9px 0 10px 0;
       border-bottom: 2px solid var(--primary-color);
       border-top: 2px solid var(--primary-color);
       break-after: avoid;
@@ -59,7 +59,7 @@ export function buildBlocksCss(): string {
     }
 
     .h1-title {
-      font-size: 20px;
+      font-size: 23px;
       font-weight: 800;
       color: var(--primary-color);
       line-height: 1.4;
@@ -82,8 +82,8 @@ export function buildBlocksCss(): string {
       display: flex;
       align-items: center;
       gap: 7px;
-      margin: 12px 0 5px 0;
-      padding-bottom: 3px;
+      margin: 18px 0 8px 0;
+      padding-bottom: 4px;
       border-bottom: 1.5px solid var(--primary-color);
       break-after: avoid;
       page-break-after: avoid;
@@ -92,14 +92,14 @@ export function buildBlocksCss(): string {
     .h2-prefix {
       color: var(--primary-color);
       font-weight: 800;
-      font-size: 20px;
+      font-size: 21.5px;
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
     }
 
     .h2-title {
-      font-size: 20px;
+      font-size: 21.5px;
       font-weight: 800;
       color: var(--primary-color);
       line-height: 1.4;
@@ -109,13 +109,13 @@ export function buildBlocksCss(): string {
     /* عناوين H3 الأكاديمية الفرعية — لون أخضر حيوي بارز ونظيف        */
     /* ------------------------------------------------------------- */
     .element-h3-container {
-      margin: 9px 0 3px 0;
+      margin: 14px 0 5px 0;
       break-after: avoid;
       page-break-after: avoid;
     }
 
     .h3-title {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--secondary-color);
       line-height: 1.4;
@@ -130,56 +130,112 @@ export function buildBlocksCss(): string {
       color: #111827;
       text-align: justify;
       text-justify: inter-word;
-      margin: 3.5px 0;
+      margin: 6px 0 8px 0;
     }
 
     /* تمييز العناصر والعناوين الفرعية داخل الفقرات بألوان طباعية حيوية متناسقة ومتباينة */
     .lead-num-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-letter-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-stage-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-subitem-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-bullet-title {
       color: var(--secondary-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-note {
       color: var(--accent-color);
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-qa-q {
-      color: var(--primary-color);
+      color: inherit;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
     }
 
     .lead-qa-a {
-      color: var(--secondary-color);
+      color: #111827;
       font-weight: 800;
-      font-size: 18px;
+      font-size: 1em;
+    }
+
+    /* كل سطر داخل الفقرة كتلة مستقلة بمسافة خفيفة حتى لا تتلاصق النقاط */
+    .p-line {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .p-line:last-child {
+      margin-bottom: 0;
+    }
+
+    /* سطر السؤال: ملوّن بالكامل — الجواب يبقى بالأسود */
+    .p-line-q {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .p-line-q:first-child {
+      margin-top: 0;
+    }
+
+    .p-line-q strong,
+    .p-line-q .quote-secondary {
+      color: inherit;
+    }
+
+    /* ------------------------------------------------------------- */
+    /* فاصل بداية محاضرة جديدة (المحاضرة الأولى / الثانية ...)        */
+    /* ------------------------------------------------------------- */
+    .element-lecture-marker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0 14px 0;
+      break-after: avoid;
+      page-break-after: avoid;
+      break-inside: avoid;
+    }
+
+    .element-lecture-marker:first-child {
+      margin-top: 6px;
+    }
+
+    .lecture-marker-rule {
+      flex: 1;
+      height: 0;
+      border-top: 1px solid var(--primary-color);
+    }
+
+    .lecture-marker-text {
+      color: var(--primary-color);
+      font-size: 22px;
+      font-weight: 800;
+      white-space: nowrap;
     }
 
     .quote-secondary {
@@ -592,9 +648,9 @@ export function buildBlocksCss(): string {
       display: flex;
       align-items: baseline;
       gap: 6px;
-      font-weight: 800;
-      font-size: 14.5px;
-      line-height: 1.5;
+      font-weight: 700;
+      font-size: 1em;
+      line-height: var(--base-line-height);
       break-after: avoid;
       page-break-after: avoid;
     }
@@ -607,18 +663,18 @@ export function buildBlocksCss(): string {
     }
 
     .qa-q-line {
-      line-height: 1.5;
-      color: #0F172A;
-      font-weight: 800;
+      line-height: var(--base-line-height);
+      color: var(--primary-color);
+      font-weight: 700;
     }
 
     .qa-badge-q {
       display: inline-block;
       color: var(--primary-color);
-      font-size: 15px;
+      font-size: 1em;
       font-weight: 800;
       flex-shrink: 0;
-      line-height: 1.5;
+      line-height: var(--base-line-height);
     }
 
     .qa-tag {
@@ -646,7 +702,7 @@ export function buildBlocksCss(): string {
       display: flex;
       align-items: baseline;
       gap: 6px;
-      font-size: 13px;
+      font-size: 0.95em;
       padding: 2px 0;
       background: transparent;
       border: none;
@@ -697,24 +753,24 @@ export function buildBlocksCss(): string {
       border: none;
       padding: 0;
       margin-top: 2px;
-      font-size: 13.5px;
-      line-height: 1.6;
+      font-size: 1em;
+      line-height: var(--base-line-height);
     }
 
     .qa-badge-a {
       display: inline-block;
-      color: var(--secondary-color);
-      font-size: 15px;
+      color: #111827;
+      font-size: 1em;
       font-weight: 800;
       flex-shrink: 0;
-      line-height: 1.6;
+      line-height: var(--base-line-height);
     }
 
     .qa-answer-text {
       flex: 1;
-      color: #1E293B;
-      font-size: 13.5px;
-      line-height: 1.6;
+      color: #111827;
+      font-size: 1em;
+      line-height: var(--base-line-height);
       text-align: justify;
     }
 

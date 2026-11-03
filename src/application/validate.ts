@@ -101,8 +101,9 @@ const SummaryBlockSchema = z.object({
 
 const DividerBlockSchema = z.object({
   type: z.literal('divider'),
-  style: z.enum(['solid', 'dashed', 'dotted', 'gradient', 'with-icon']).optional(),
+  style: z.enum(['solid', 'dashed', 'dotted', 'gradient', 'with-icon', 'page-break', 'lecture']).optional(),
   icon: z.string().optional(),
+  label: z.string().optional(),
 });
 
 const BilingualBlockSchema = z.object({

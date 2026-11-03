@@ -129,6 +129,13 @@ function convertElement(el: LegacyElement): ContentBlock | null {
         style: 'page-break',
       };
 
+    case 'lecture':
+      return {
+        type: 'divider',
+        style: 'lecture',
+        label: el.text || el.label || '',
+      };
+
     case 'line':
       return {
         type: 'divider',
