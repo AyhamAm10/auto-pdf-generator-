@@ -19,6 +19,7 @@ import { ershadTheme } from './ershad';
 import { moallemTheme } from './moallem';
 import { manahijTheme } from './manahij';
 import { purpleTheme } from './purple';
+import { diplomaTheme } from './diploma';
 
 // ---------------------------------------------------------------------------
 // Registry
@@ -29,6 +30,7 @@ const themeRegistry: Record<string, ThemeDefinition> = {
   moallem: moallemTheme,
   manahij: manahijTheme,
   purple: purpleTheme,
+  diploma: diplomaTheme,
 };
 
 /**

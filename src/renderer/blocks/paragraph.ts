@@ -23,13 +23,22 @@ function highlightAcademicKeywords(text: string): string {
   // 5. Numbered main items: e.g. "1. التعريف الأول لعلم الإحصاء:" or "• 1- بيانات وصفية...:" or "1- العينات العشوائية البسيطة...:" or "١ - المرسل:"
   res = res.replace(/(^|<br\/>)(\s*•?\s*[\d\u0660-\u0669]+[\.\-–]\s*[^:<\n]{2,60}:)/g, '$1<strong class="lead-num-title">$2</strong>');
 
-  // 6. Bullet sub-items with title: e.g. "• مفهوم النظام البيئي:", "• أهمية المحيط المائي وخصائصه الحيوية:"
-  res = res.replace(/(^|<br\/>)(\s*•\s*[^:<\n]{2,55}:)/g, '$1<strong class="lead-bullet-title">$2</strong>');
+  // 6. Checkmark sub-items with title: e.g. "✓ الأهداف:", "✓ الموقف التعليمي:"
+  res = res.replace(/(^|<br\/>)(\s*✓\s*[^:<\n]{2,55}:)/g, '$1<strong class="lead-check-title">$2</strong>');
 
-  // 7. Short sub-items like "- النوع:", "- الحالة الاجتماعية:", "- الجنسية:"
+  // 7. Bullet sub-items with title: e.g. "• مفهوم النظام البيئي:", "• أهمية المحيط المائي وخصائصه الحيوية:"
+  res = res.replace(/(^|<br\/>)(\s*[•]\s*[^:<\n]{2,55}:)/g, '$1<strong class="lead-bullet-title">$2</strong>');
+
+  // 8. Short sub-items like "- النوع:", "- الحالة الاجتماعية:", "- الجنسية:"
   res = res.replace(/(^|<br\/>)(\s*[-–]\s*[^:<\n]{2,45}:)/g, '$1<strong class="lead-subitem-title">$2</strong>');
 
-  // 8. Q&A leads: "س:", "س/", "• س:", "ج:", "ج/", "• ج:"
+  // 9. Definition / Concept lead: e.g. "عرف الهدف:", "عرف الفلسفة التربوية:"
+  res = res.replace(/(^|<br\/>)(\s*عرف\s+[^:<\n]{2,50}:)/g, '$1<strong class="lead-def-title">$2</strong>');
+
+  // 10. Standalone checkmark bullet without colon: color the checkmark symbol itself
+  res = res.replace(/(^|<br\/>)(\s*)(✓)(\s+)/g, '$1$2<span class="symbol-check">$3</span>$4');
+
+  // 11. Q&A leads: "س:", "س/", "• س:", "ج:", "ج/", "• ج:"
   res = res.replace(/(^|<br\/>)(\s*•?\s*س\s*[:\/\-–]\s*)/g, '$1<strong class="lead-qa-q">$2</strong>');
   res = res.replace(/(^|<br\/>)(\s*•?\s*ج\s*[:\/\-–]\s*)/g, '$1<strong class="lead-qa-a">$2</strong>');
 

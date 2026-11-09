@@ -164,6 +164,25 @@ export function buildBlocksCss(): string {
       font-size: 1em;
     }
 
+    .lead-check-title {
+      color: var(--secondary-color);
+      font-weight: 800;
+      font-size: 1em;
+    }
+
+    .lead-def-title {
+      color: var(--secondary-color);
+      font-weight: 800;
+      font-size: 1em;
+    }
+
+    .symbol-check {
+      color: var(--accent-color);
+      font-weight: 900;
+      margin-left: 2px;
+      display: inline-block;
+    }
+
     .lead-note {
       color: var(--accent-color);
       font-weight: 800;

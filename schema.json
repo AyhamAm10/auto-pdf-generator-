@@ -25,7 +25,7 @@
       "properties": {
         "branchId": {
           "type": "string",
-          "enum": ["ershad", "moallem", "manahij", "teqniyat", "purple", "general"],
+          "enum": ["ershad", "moallem", "manahij", "teqniyat", "purple", "diploma", "general"],
           "description": "معرف الفرع التلقائي لاختيار الشعار والألوان"
         },
         "logoPath": { "type": "string", "description": "مسار أو رابط شعار مخصص" },

@@ -22,7 +22,8 @@ export type ThemeVariant =
   | 'ershad'    // قسم الإرشاد النفسي — Blue
   | 'moallem'   // قسم معلم صف — Green
   | 'manahij'   // قسم المناهج والتدريس والإدارة — Red
-  | 'purple';   // قسم رياض الأطفال / التربية الخاصة — Purple
+  | 'purple'    // قسم رياض الأطفال / التربية الخاصة — Purple
+  | 'diploma';  // دبلوم التأهيل التربوي — Petrol Navy & Amber Gold
 
 // ---------------------------------------------------------------------------
 // Course Information (academic metadata for the header)

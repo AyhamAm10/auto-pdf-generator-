@@ -61,8 +61,14 @@ function mapBranchToTheme(branchId?: string, department?: string): ThemeVariant 
   if (id === 'moallem' || id === 'green') return 'moallem';
   if (id === 'manahij' || id === 'red' || id === 'teqniyat') return 'manahij';
   if (id === 'purple' || id === 'atfal') return 'purple';
+  if (id === 'diploma') return 'diploma';
 
   const dept = (department || '').toLowerCase();
+
+  // Diploma theme
+  if (dept.includes('دبلوم')) {
+    return 'diploma';
+  }
 
   // Green theme
   if (dept.includes('معلم') || dept.includes('صف')) {
